@@ -25,5 +25,6 @@ ENV PATH="$HOME/.talisman/bin/:${PATH}"
 RUN echo "$PATH"
 ENV TALISMAN_HOME="$HOME/.talisman/bin"
 RUN echo "$TALISMAN_HOME"
-RUN curl --silent  https://raw.githubusercontent.com/thoughtworks/talisman/master/global_install_scripts/install.bash > /tmp/install_talisman.bash && /bin/bash /tmp/install_talisman.bash
-RUN /bin/bash -C "source ~/.talisman/bin"
+RUN curl --silent  https://raw.githubusercontent.com/thoughtworks/talisman/master/global_install_scripts/install.bash > /tmp/install_talisman.bash
+RUN ["/bin/bash", "/tmp/install_talisman.bash"]
+RUN ["/bin/bash", "source ~/.talisman/bin"]
