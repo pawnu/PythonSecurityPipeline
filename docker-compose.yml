@@ -8,4 +8,4 @@ services:
       - "50001:50001"
       - "8080:8080"
     volumes:
-      - /home/ubuntu/jenkins_home:/var/jenkins_home
+      - ~/jenkins_home:/var/jenkins_home
