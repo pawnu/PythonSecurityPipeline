@@ -1,0 +1,11 @@
+version: "3"
+services:
+  jenkins-setup:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "50001:50001"
+      - "8080:8080"
+    volumes:
+      - /home/ubuntu/jenkins_home:/var/jenkins_home
