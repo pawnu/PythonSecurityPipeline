@@ -20,11 +20,8 @@ USER jenkins
 
 #Install git history checker for jenkins user
 RUN mkdir -p ~/.talisman/bin
-RUN ls
 ENV PATH="$HOME/.talisman/bin/:${PATH}"
-RUN echo "$PATH"
 ENV TALISMAN_HOME="$HOME/.talisman/bin"
-RUN echo "$TALISMAN_HOME"
 RUN curl --silent  https://raw.githubusercontent.com/thoughtworks/talisman/master/global_install_scripts/install.bash > /tmp/install_talisman.bash
-RUN /bin/bash -c "/tmp/install_talisman.bash"]
-#RUN ["/bin/bash", "source ~/.talisman/bin"]
+#TODO: ?Can't seem to get below command not working
+#RUN ["/bin/bash", "-c", "/tmp/install_talisman.bash"]
