@@ -30,4 +30,11 @@ http://your-jenkins-server:8080/
 docker logs <your-jenkins-container-name>
 ```
 
-7. Skip the plugin installation as this has been installed already.
+7. Continue with the setup to get to Jenkins main page
+
+## Setting up a Jenkins Pipeline project
+1. Click on New Item, input name for your project and select Pipeline as the option and click OK.
+2. Scroll down to Pipeline section - Definition, select "Pipeline script from SCM" from drop down menu.
+3. Select Git under SCM, and input Repository URL such as `https://github.com/pawnu/jenkinspythondemo.git`
+4. Create and Add your credentials for the Git repo, and click Save.
+5. You will be brought to the Dashboard of your Pipeline project, click on "Build Now" button to start off the pipeline.
