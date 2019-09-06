@@ -18,11 +18,16 @@ sudo sh setup-ubuntu.sh
 3. Restart the Ubuntu server to finish installation
 4. Build the docker container in detatched mode and run it
 ```
+cd JenkinsOnDocker
 docker-compose up -d --build
 ```
 5. Make sure your firewall allows incoming traffic to port 8080. Then, go to your jenkins server URL 
 ```
 http://your-jenkins-server:8080/
 ```
-6. Input the admin password from the docker-compose logs generated, and create Jenkins user.
+6. Input the admin password from the docker logs generated, and create Jenkins user.
+```
+docker logs <your-jenkins-container-name>
+```
+
 7. Skip the plugin installation as this has been installed already.
