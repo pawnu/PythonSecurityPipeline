@@ -2,7 +2,7 @@
 
 Use this project to create a Jenkins server to run SCA on JAVA or Python
 
-*NOTE: This has been tested on Ubuntu 18.04 amd64 server*
+*NOTE: This has been tested on AWS Ubuntu 18.04 amd64 server*
 
 ## Installation steps
 
