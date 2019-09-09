@@ -16,7 +16,7 @@ cd JenkinsOnDocker
 sudo sh setup-ubuntu.sh
 ```
 3. Restart the Ubuntu server to finish installation
-4. Build the docker container in detatched mode and run it
+4. Build the Jenkins docker container and run it
 ```
 cd JenkinsOnDocker
 docker-compose up -d --build
@@ -27,10 +27,12 @@ http://your-jenkins-server:8080/
 ```
 6. Input the admin password from the docker logs generated, and create Jenkins user.
 ```
+docker ps
 docker logs <your-jenkins-container-name>
 ```
 
 7. Continue with the setup to get to Jenkins main page
+8. Go to Manage Jenkins- Configure Systems - Shell - Shell Executable. Add /bin/bash as the executable for Python's virtualenv to work correctly.
 
 ## Setting up a Jenkins Pipeline project
 1. Click on New Item, input name for your project and select Pipeline as the option and click OK.
