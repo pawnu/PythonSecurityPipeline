@@ -20,6 +20,8 @@ RUN pip install virtualenv
 RUN pip install safety
 #Install the git history checker for secrets
 RUN pip install trufflehog
+#Install python SAST tool
+RUN pip install bandit
 # drop back to the regular jenkins user - good practice
 USER jenkins
 
