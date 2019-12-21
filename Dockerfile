@@ -22,13 +22,10 @@ RUN pip install safety
 RUN pip install trufflehog
 #Install python SAST tool
 RUN pip install bandit
+#Install DAST tool owasp zap cli version
+RUN pip install --upgrade zapcli
+#install the orchestration tool
+RUN pip install ansible
+
 # drop back to the regular jenkins user - good practice
 USER jenkins
-
-#Steps to install talisman not working
-#RUN mkdir -p ~/.talisman/bin
-#ENV PATH="$HOME/.talisman/bin/:${PATH}"
-#ENV TALISMAN_HOME="$HOME/.talisman/bin"
-#RUN curl --silent  https://raw.githubusercontent.com/thoughtworks/talisman/master/global_install_scripts/install.bash > /tmp/install_talisman.bash
-#TODO: ?Can't seem to get below command not working
-#RUN ["/bin/bash", "-c", "/tmp/install_talisman.bash"]
