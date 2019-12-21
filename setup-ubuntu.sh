@@ -7,4 +7,6 @@ apt-get install -y docker-compose
 mkdir ~/jenkins_home
 chown 1000 ~/jenkins_home
 usermod -aG docker ubuntu
-echo "Please reboot the Ubuntu server"
+echo "Rebooting the Ubuntu server"
+sleep 5s
+systemctl reboot
