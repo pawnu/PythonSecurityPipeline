@@ -12,17 +12,17 @@ Use this project to create a Jenkins server and DevSecOps pipeline for Python we
 
 1. Clone this repository to your Ubuntu Server
 ```
-git clone https://github.com/pawnu/JenkinsOnDocker.git
+git clone https://github.com/pawnu/PythonSecurityPipeline.git
 ```
 2. Run the setup script to install Docker and docker-compose
 ```
-cd JenkinsOnDocker
+cd PythonSecurityPipeline
 sudo sh setup-ubuntu.sh
 ```
 3. Restart the Ubuntu server to finish installation
 4. Build the Jenkins docker container and run it
 ```
-cd JenkinsOnDocker
+cd PythonSecurityPipeline
 docker-compose up -d --build
 ```
 5. Make sure your firewall allows incoming traffic to port 8080. Then, go to your jenkins server URL 
@@ -44,3 +44,10 @@ docker logs <your-jenkins-container-name>
 3. Select Git under SCM, and input Repository URL such as `https://github.com/pawnu/jenkinspythondemo.git`
 4. (Optional) Create and Add your credentials for the Git repo if your repo is private, and click Save.
 5. You will be brought to the Dashboard of your Pipeline project, click on "Build Now" button to start off the pipeline.
+
+## Authors
+
+* **Pawan Uppadey** - *Initial work* - [pawnu](https://github.com/pawnu)
+
+See also the list of [contributors](https://github.com/pawnu/PythonSecurityPipeline/contributors) who participated in this project.
+
