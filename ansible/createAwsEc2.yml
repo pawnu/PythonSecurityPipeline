@@ -68,6 +68,6 @@
        dest: /home/ubuntu/
        copy: no
    - name: Run the application with docker
-       shell: make install
+     shell: make install
        args:
         chdir: gossip-world/
