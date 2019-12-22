@@ -22,7 +22,7 @@
          region: "{{ region }}"
          vpc_subnet_id: subnet-02a17e56e6827124a
          assign_public_ip: yes
-         instance_tags: "{tagname}}"
+         instance_tags: "{{tagname}}"
       register: ec2
       #register the details of instance to ec2 object for use later
 
@@ -69,5 +69,5 @@
        copy: no
    - name: Run the application with docker
      shell: make install
-       args:
-        chdir: gossip-world/
+     args:
+       chdir: gossip-world/
