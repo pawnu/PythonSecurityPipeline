@@ -2,8 +2,7 @@ version: "3"
 services:
   jenkins-master:
     build:
-      context: .
-      dockerfile: ./jenkins
+      context: ./jenkins
     ports:
       - "50000:50000"
       - "8080:8080"
