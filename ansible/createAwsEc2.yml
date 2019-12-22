@@ -1,3 +1,4 @@
+---
 #file createAwsEc2.yml
 - name: Create a sandbox instance
   hosts: localhost
@@ -8,6 +9,8 @@
     security_group: launch-wizard-5
     image: ami-0be057a22c63962cb
     region: eu-west-2
+    tagname: Name=TestServer
+
   tasks:
     - name: Launch instance
       ec2:
@@ -19,11 +22,14 @@
          region: "{{ region }}"
          vpc_subnet_id: subnet-02a17e56e6827124a
          assign_public_ip: yes
+         instance_tags: "{tagname}}"
       register: ec2
+      #register the details of instance to ec2 object for use later
 
     - name: Add new instance to host group
       add_host:
         hostname: "{{ item.public_ip }}"
+        #add the ip address to launched group in the hosts file so we can reference it later
         groupname: launched
       loop: "{{ ec2.instances }}"
 
