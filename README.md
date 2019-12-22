@@ -1,10 +1,14 @@
 # Dockerfiles for Jenkins server
 
-Use this project to create a Jenkins server to run SCA on JAVA or Python
+Use this project to create a Jenkins server to security focused pipeline for Python web application
 
 *NOTE: This has been tested on AWS Ubuntu 18.04 amd64 server*
 
-## Installation steps
+## TO DO
+1. Use cloudformation template to automate the environment configuration
+2. Use Jenkins API/config to setup and automatically create the pipeline job
+
+## Environment configuration manual steps
 
 1. Clone this repository to your Ubuntu Server
 ```
@@ -34,9 +38,9 @@ docker logs <your-jenkins-container-name>
 7. Continue with the setup to get to Jenkins main page
 8. Go to Manage Jenkins- Configure Systems - Shell - Shell Executable. Add /bin/bash as the executable for Python's virtualenv to work correctly.
 
-## Setting up a Jenkins Pipeline project
+## Setting up a Jenkins Pipeline project manually
 1. Click on New Item, input name for your project and select Pipeline as the option and click OK.
 2. Scroll down to Pipeline section - Definition, select "Pipeline script from SCM" from drop down menu.
 3. Select Git under SCM, and input Repository URL such as `https://github.com/pawnu/jenkinspythondemo.git`
-4. Create and Add your credentials for the Git repo, and click Save.
+4. (Optional) Create and Add your credentials for the Git repo if your repo is private, and click Save.
 5. You will be brought to the Dashboard of your Pipeline project, click on "Build Now" button to start off the pipeline.
