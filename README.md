@@ -5,8 +5,9 @@ Use this project to create a Jenkins server and DevSecOps pipeline for Python we
 *NOTE: This has been tested on AWS Ubuntu 18.04 amd64 server*
 
 **TO DO:**
-1. Use cloudformation template to automate the environment configuration
-2. Use Jenkins API/config to setup and automatically create the pipeline job
+1. Use ansible to create and deploy project to AWS ec2 instances
+2. Use cloudformation template to automate the environment configuration
+3. Use Jenkins API/config to setup and automatically create the pipeline job
 
 ## Environment configuration manual steps
 
