@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
 	python3-pip \
 	curl \
 	maven \
-	git
+	git \
+	perl
 	
 #Install virtualenv to isolate each project dependencies
 RUN pip install virtualenv
