@@ -1,7 +1,8 @@
 FROM jenkins/jenkins:jdk11
 MAINTAINER pawan uppadey <pawan.uppadey@gmail.com>
+
 #Install Jenkins plugin to make this pipeline work
-COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
+#COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 #RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 #setup the docker container for scanners
@@ -13,7 +14,9 @@ RUN apt-get update && apt-get install -y \
 	curl \
 	maven \
 	git \
-	perl
+	perl \
+	wget \
+	lynis
 	
 #Install virtualenv to isolate each project dependencies
 RUN pip install virtualenv
