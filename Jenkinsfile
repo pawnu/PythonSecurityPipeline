@@ -4,14 +4,14 @@ ansibleinventory = "pysecpipeline"
 def testenv = ""
 
 /*
-This pipeline will run following scans on the project:
+This pipeline will carry out the following on the project:
 
 1. Git secret checker
 2. Software Composition Analysis
 3. Static Application Security Testing
 4. Dynamic Application Security Testing
-5. Vulnerability assessment 
-6. Compliance checks
+5. Container security audit 
+6. Host security audit
 
 Additionally, endpoint protection will be added to deployed server
 */
@@ -86,6 +86,20 @@ pipeline {
               """
           }
       }
+      stage('Container audit') {
+          steps {
+              echo 'Test the web application from its frontend'
+              sh """
+                lynis audit dockerfile owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile
+              """
+          }
+      }
+      stage('Host audit') {
+          steps {
+              echo 'Use ansible for this'
+          }
+      }
+      
 */      
     }
 }
