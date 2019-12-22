@@ -1,8 +1,8 @@
 # Dockerfiles for Jenkins server
 
-Use this project to create a Jenkins server and DevSecOps pipeline for Python web application
+Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pipeline for Python web application
 
-*NOTE: This has been tested on AWS Ubuntu 18.04 amd64 server*
+*Disclaimer: This project is for prototype, do not use it for deploying to production*
 
 **TO DO:**
 1. Use ansible to create and deploy project to AWS ec2 instances
