@@ -1,10 +1,10 @@
 # Dockerfiles for Jenkins server
 
-Use this project to create a Jenkins server to security focused pipeline for Python web application
+Use this project to create a Jenkins server and DevSecOps pipeline for Python web application
 
 *NOTE: This has been tested on AWS Ubuntu 18.04 amd64 server*
 
-## TO DO
+**TO DO:**
 1. Use cloudformation template to automate the environment configuration
 2. Use Jenkins API/config to setup and automatically create the pipeline job
 
