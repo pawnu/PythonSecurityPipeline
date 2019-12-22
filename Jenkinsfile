@@ -1,5 +1,5 @@
 /* Which python project is it in git */
-pythonproject = "https://github.com/contentful/the-example-app.py.git"
+pythonproject = "https://github.com/globocom/secDevLabs.git"
 ansibleinventory = "pysecpipeline"
 
 /*
@@ -49,7 +49,7 @@ pipeline {
       stage('SCA'){
         steps{
           echo 'running python safety check on requirements.txt file'
-          sh 'safety check -r requirements.txt'
+          sh 'safety check -r secDevLabs/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt'
         }
       }  
       stage('SAST') {
@@ -57,13 +57,13 @@ pipeline {
               echo 'Testing insecure dependency'
               sh """
               source bin/activate
-              bandit -r . -lll
+              bandit -r secDevLabs/owasp-top10-2017-apps/a7/gossip-world/app/ -lll
               deactivate
               """
           }
       }
 /*      
-      stage('Setup Ansible') {
+      stage('Setup stage env') {
           steps {
               echo 'Set up new inventory for use for this pipeline'
               sh """
