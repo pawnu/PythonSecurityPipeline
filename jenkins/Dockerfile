@@ -26,10 +26,11 @@ RUN pip install safety
 RUN pip install trufflehog
 #Install python SAST tool
 RUN pip install bandit
-#Install DAST tool owasp zap cli version
-RUN pip install --upgrade zapcli
-#install the orchestration tool
+
+#install the orchestration tool, boto for ec2 module, some lib upgrade under requests
 RUN pip install ansible
+RUN pip install boto boto3
+RUN pip install --upgrade requests
 
 # drop back to the regular jenkins user - good practice
 USER jenkins
