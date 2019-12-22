@@ -1,8 +1,3 @@
-/* Which python project is it in git */
-pythonproject = "https://github.com/globocom/secDevLabs.git"
-ansibleinventory = "pysecpipeline"
-def testenv = ""
-
 /*
 This pipeline will carry out the following on the project:
 
@@ -15,6 +10,11 @@ This pipeline will carry out the following on the project:
 
 Additionally, endpoint protection will be added to deployed server
 */
+
+/* Which python project is it in git */
+pythonproject = "https://github.com/globocom/secDevLabs.git"
+ansibleinventory = "pysecpipeline"
+def testenv = ""
 
 pipeline {
 
