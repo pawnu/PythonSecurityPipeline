@@ -1,6 +1,7 @@
 /* Which python project is it in git */
 pythonproject = "https://github.com/globocom/secDevLabs.git"
 ansibleinventory = "pysecpipeline"
+def testenv = ""
 
 /*
 This pipeline will run following scans on the project:
@@ -54,7 +55,7 @@ pipeline {
       }  
       stage('SAST') {
           steps {
-              echo 'Testing insecure dependency'
+              echo 'Testing source code for security bugs and vulnerabilities'
               sh """
               source bin/activate
               bandit -r secDevLabs/owasp-top10-2017-apps/a7/gossip-world/app/ -lll
@@ -72,6 +73,16 @@ pipeline {
                   localhost ansible_connection=local
                   [webserver]
                   EOT
+              """
+          }
+      }
+      stage('DAST') {
+          steps {
+              echo 'Test the web application from its frontend'
+              sh """
+                wget https://github.com/sullo/nikto/archive/master.zip
+                unzip master.zip
+                perl nikto-master/program/nikto.pl -h http://{$testenv}:10007/login
               """
           }
       }
