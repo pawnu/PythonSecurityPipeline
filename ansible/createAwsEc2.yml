@@ -1,5 +1,5 @@
 ---
-#file createAwsEc2.yml
+# Create ec2 instance and add it to ansible inventory
 - name: Create a sandbox instance
   hosts: localhost
   gather_facts: False
@@ -30,7 +30,7 @@
       add_host:
         hostname: "{{ item.public_ip }}"
         #add the ip address to launched group in the hosts file so we can reference it later
-        groupname: launched
+        groupname: tstlaunched
       loop: "{{ ec2.instances }}"
 
     - name: Wait for SSH to come up
@@ -39,3 +39,35 @@
         delay: 60
         timeout: 320
       loop: "{{ ec2.instances }}"
+
+# Configure launched instance for test
+- name: Configure instance(s)
+  hosts: tstlaunched
+  become: True
+  remote_user: ubuntu
+  gather_facts: True
+  pre_tasks:
+   - name: 'install python'
+     raw: 'sudo apt-get -y install python'
+  tasks:
+   - name: update package manager
+     apt: update_cache=yes
+   - name: Install docker
+     apt: name=docker.io state=present
+   - name: Install docker-compose
+     apt: name=docker-compose state=present
+   - name: Install lynis
+     apt: name=lynis state=present
+   - name: Copy the zip file of project
+     copy: 
+       src: binary.zip 
+       dest: /home/ubuntu/binary.zip
+   - name: Unzip it
+     unarchive: 
+       src: /home/ubuntu/binary.zip
+       dest: /home/ubuntu/
+       copy: no
+   - name: Run the application with docker
+       shell: make install
+       args:
+        chdir: gossip-world/
