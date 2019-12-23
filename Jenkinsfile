@@ -4,8 +4,8 @@ This pipeline will carry out the following on the project:
 1. Git secret checker
 2. Software Composition Analysis
 3. Static Application Security Testing
-4. Dynamic Application Security Testing
-5. Container security audit 
+4. Container security audit 
+5. Dynamic Application Security Testing
 6. Host security audit
 
 Additionally, endpoint protection will be added to deployed server
@@ -63,6 +63,14 @@ pipeline {
               """
           }
       }
+      stage('Container audit') {
+          steps {
+              echo 'Audit the dockerfile used to spin up the web application'
+              sh """
+                lynis audit dockerfile owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile
+              """
+          }
+      }	    
       stage('Setup stage env') {
           steps {
               sh """
@@ -75,23 +83,15 @@ pipeline {
         stage('DAST') {
           steps {
                 //Test the web application from its frontend
-				def exists = fileExists 'nikto-master/program/nikto.pl'
-				if(exists){
-					echo 'already exists'
-				}else{
-					sh 'wget https://github.com/sullo/nikto/archive/master.zip'
-					sh 'unzip master.zip'
-					sh 'rm master.zip'
-					sh 'perl nikto-master/program/nikto.pl -h http://{$testenv}:10007/login'
-				}          
-          }
-      }
-      stage('Container audit') {
-          steps {
-              echo 'Test the web application from its frontend'
-              sh """
-                lynis audit dockerfile owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile
-              """
+		def exists = fileExists 'nikto-master/program/nikto.pl'
+		if(exists){
+			echo 'already exists'
+		}else{
+			sh 'wget https://github.com/sullo/nikto/archive/master.zip'
+			sh 'unzip master.zip'
+			sh 'rm master.zip'
+			sh 'perl nikto-master/program/nikto.pl -h http://{$testenv}:10007/login'
+		}          
           }
       }
       stage('Host audit') {
