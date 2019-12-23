@@ -17,7 +17,9 @@ RUN apt-get update && apt-get install -y \
 	perl \
 	wget \
 	lynis
-	
+# drop back to the regular jenkins user - good practice
+USER jenkins
+
 #Install virtualenv to isolate each project dependencies
 RUN pip install virtualenv
 #Install python SCA tool/dependency checker
@@ -32,5 +34,4 @@ RUN pip install ansible
 RUN pip install boto boto3
 RUN pip install --upgrade requests
 
-# drop back to the regular jenkins user - good practice
-USER jenkins
+
