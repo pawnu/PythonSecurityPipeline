@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y \
 	perl \
 	wget \
 	lynis
+# configure ansible to use right keys and not check host auth for ephemeral hosts
+# not checking hosts for long term hosts may lead to mitm..
+COPY ansible.cfg /etc/ansible/ansible.cfg
 # drop back to the regular jenkins user - good practice
 USER jenkins
 
@@ -33,5 +36,4 @@ RUN pip install bandit
 RUN pip install ansible
 RUN pip install boto boto3
 RUN pip install --upgrade requests
-
 
