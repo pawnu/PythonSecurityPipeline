@@ -4,9 +4,6 @@
   become: True
   remote_user: ubuntu
   gather_facts: True
-  pre_tasks:
-   - name: 'install python'
-     raw: 'sudo apt-get -y install python'
   tasks:
    - name: update package manager
      apt: update_cache=yes
