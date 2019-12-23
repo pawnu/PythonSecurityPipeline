@@ -74,12 +74,16 @@ pipeline {
 /*
         stage('DAST') {
           steps {
-              echo 'Test the web application from its frontend'
-              sh """
-                wget https://github.com/sullo/nikto/archive/master.zip
-                unzip master.zip
-                perl nikto-master/program/nikto.pl -h http://{$testenv}:10007/login
-              """
+                //Test the web application from its frontend
+				def exists = fileExists 'nikto-master/program/nikto.pl'
+				if(exists){
+					echo 'already exists'
+				}else{
+					sh 'wget https://github.com/sullo/nikto/archive/master.zip'
+					sh 'unzip master.zip'
+					sh 'rm master.zip'
+					sh 'perl nikto-master/program/nikto.pl -h http://{$testenv}:10007/login'
+				}          
           }
       }
       stage('Container audit') {
