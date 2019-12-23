@@ -1,14 +1,15 @@
 #!/bin/bash
 
-sudo apt-get update
-sudo apt install docker.io -y
-sudo apt-get install -y docker-compose
+apt-get update
+apt install docker.io -y
+apt-get install -y docker-compose
+
+#have to relogin as ubuntu user
 sudo usermod -aG docker ubuntu
-#restart group
-sudo newgrp docker
+# restart new session with group
+#newgrp docker
 
 #let docker run when server is restarted
-systemctl start docker
 systemctl enable docker
 
 #build the jenkins container
