@@ -3,6 +3,7 @@ services:
   jenkins-master:
     build:
       context: ./jenkins
+    restart: always  
     ports:
       - "50000:50000"
       - "8080:8080"
