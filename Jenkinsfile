@@ -13,7 +13,6 @@ Additionally, endpoint protection will be added to deployed server
 
 /* Which python project is it in git */
 pythonproject = "https://github.com/globocom/secDevLabs.git"
-ansibleinventory = "pysecpipeline"
 def testenv = ""
 
 pipeline {
@@ -68,10 +67,10 @@ pipeline {
           steps {
               echo 'Set up new inventory for use for this pipeline'
               sh """
-                  cat<<EOT> /etc/ansible/{$ansibleinventory}
-                  [master]
+                  cat<<EOT> ~/ansible_hosts
+                  [local]
                   localhost ansible_connection=local
-                  [webserver]
+                  [tstlaunched]
                   EOT
               """
           }
