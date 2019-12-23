@@ -16,7 +16,7 @@
     - name: Upload public key to AWS
       ec2_key:
          name: "{{ keyname }}"
-         key_material: "{{ lookup('file', '/home/ubuntu/.ssh/{{ keyname }}.pub') }}"
+         key_material: "{{ lookup('file', '~/.ssh/{{ keyname }}.pub') }}"
          region: "{{ region }}"
 
     - name: Launch instance
