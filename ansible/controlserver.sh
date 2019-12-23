@@ -4,7 +4,7 @@
 sudo apt update
 sudo apt install software-properties-common -y
 sudo apt-add-repository --yes --update ppa:ansible/ansible
-sudo apt install ansible
+sudo apt install ansible -y
 
 # Generate a keypair id_rsa (priv key), id_rsa.pub (public key)
 # If the files already exist then it will give error, ignore it by or clause
