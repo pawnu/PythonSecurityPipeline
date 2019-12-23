@@ -26,11 +26,12 @@ pipeline {
           sh """
               pip install safety
               pip install trufflehog
-
-              virtualenv --no-site-packages .
-              source bin/activate
+              pip install ansible
+              pip install boto boto3
+              #virtualenv --no-site-packages .
+              #source bin/activate
               pip install bandit
-              deactivate
+              #deactivate
            """
         }    
       }
@@ -56,26 +57,22 @@ pipeline {
           steps {
               echo 'Testing source code for security bugs and vulnerabilities'
               sh """
-              source bin/activate
+              #source bin/activate
               bandit -r secDevLabs/owasp-top10-2017-apps/a7/gossip-world/app/ -lll
-              deactivate
+              #deactivate
               """
           }
       }
-/*      
       stage('Setup stage env') {
           steps {
-              echo 'Set up new inventory for use for this pipeline'
               sh """
-                  cat<<EOT> ~/ansible_hosts
-                  [local]
-                  localhost ansible_connection=local
-                  [tstlaunched]
-                  EOT
+              ssh-keygen -t rsa -N "" -f ~/.ssh/ansible_key || true
+              ansible-playbook createAwsEc2.yml
               """
           }
       }
-      stage('DAST') {
+/*
+        stage('DAST') {
           steps {
               echo 'Test the web application from its frontend'
               sh """
