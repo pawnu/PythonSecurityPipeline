@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y \
 	maven \
 	git \
 	perl \
-	wget 
+	wget \
+	kbtin
 #Install virtualenv to isolate each project dependencies
 RUN pip install virtualenv
 #Install python SCA tool/dependency checker
@@ -25,7 +26,8 @@ RUN pip install bandit
 
 #install the orchestration tool, boto for ec2 module, some lib upgrade under requests
 RUN pip install ansible
-RUN pip install boto boto3
+RUN pip install boto 
+RUN pip install boto3
 
 # configure ansible to use right keys and not check host auth for ephemeral hosts
 # not checking hosts for long term hosts may lead to mitm..
