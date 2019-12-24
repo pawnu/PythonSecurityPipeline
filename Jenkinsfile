@@ -71,13 +71,21 @@ pipeline {
       stage('Setup stage env') {
           steps {
               sh """
+	      #refresh inventory
+	      cat << EOF > ~/ansible_hosts
+	      [local]
+	      localhost ansible_connection=local
+	      [tstlaunched]
+	      EOF
+	      tar cvfz pythonapp.tar.gz $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world  
               ssh-keygen -t rsa -N "" -f ~/.ssh/ansible_key || true
               ansible-playbook -i ~/ansible_hosts ~/createAwsEc2.yml
+	      testenv = sed -n '/tstlaunched/{n;p;}' ~/ansible_hosts
+	      ansible-playbook -i ~/ansible_hosts ~/configureTestEnv.yml
               """
           }
       }
-/*
-        stage('DAST') {
+      stage('DAST') {
           steps {
 		script{				
 			//Test the web application from its frontend
@@ -92,9 +100,10 @@ pipeline {
 			      """
 			}
 		}
-		sh 'perl nikto-master/program/nikto.pl -h http://{$testenv}:10007/login'
+		sh 'perl nikto-master/program/nikto.pl -h http://${testenv}:10007/login'
 	   }
       }
+/*	    
       stage('Host audit') {
           steps {
               echo 'Use ansible for this'
