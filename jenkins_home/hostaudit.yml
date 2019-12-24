@@ -29,6 +29,7 @@
      fetch:
         src: /home/ubuntu/lynis/report.html
         dest: /var/jenkins_home/
+        flat: yes
    - name: Remove html report on host
      file:
        path: /home/ubuntu/lynis/report.html
