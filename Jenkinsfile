@@ -79,9 +79,11 @@ pipeline {
 	      tar cvfz pythonapp.tar.gz $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world  
               ssh-keygen -t rsa -N "" -f ~/.ssh/ansible_key || true
               ansible-playbook -i ~/ansible_hosts ~/createAwsEc2.yml
-	      testenv = sed -n '/tstlaunched/{n;p;}' ~/ansible_hosts
-	      ansible-playbook -i ~/ansible_hosts ~/configureTestEnv.yml
               """
+	      script{
+		 testenv = sh(sed -n '/tstlaunched/{n;p;}' /var/jenkins_home/ansible_hosts)
+	      }
+	      sh  'ansible-playbook -i ~/ansible_hosts ~/configureTestEnv.yml'
           }
       }
       stage('DAST') {
