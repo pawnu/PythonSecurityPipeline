@@ -21,7 +21,7 @@ pipeline {
     agent any
 
     stages {   
-      stage('Checkout code'){
+      stage('Checkout project'){
         steps {
           echo 'downloading git directory..'
 	  git 'https://github.com/globocom/secDevLabs.git'
