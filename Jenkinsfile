@@ -13,7 +13,7 @@ Additionally, endpoint protection will be added to deployed server
 
 /* Which python project is it in git */
 def pythonproject = "https://github.com/globocom/secDevLabs.git"
-def testenv = ""
+testenv = "null"
 
 pipeline {
 
@@ -82,8 +82,9 @@ pipeline {
               ansible-playbook -i ~/ansible_hosts ~/createAwsEc2.yml
               """		  
 	      script{
-		 testenv = sh(script: "sed -n '/tstlaunched/{n;p;}' /var/jenkins_home/ansible_hosts", returnStdout: true)
+		 testenv = sh(script: "sed -n '/tstlaunched/{n;p;}' /var/jenkins_home/ansible_hosts", returnStdout: true).trim()
 	      }
+	      echo "${testenv}"
 	      sh  'ansible-playbook -i ~/ansible_hosts ~/configureTestEnv.yml'
           }
       }
@@ -102,7 +103,10 @@ pipeline {
 			      """
 			}
 		}
-		sh 'perl /var/jenkins_home/nikto-master/program/nikto.pl -h http://$testenv:10007/login'
+		if(${testenv} != null){
+			sh 'perl /var/jenkins_home/nikto-master/program/nikto.pl -h http://${testenv}:10007/login'
+		}  
+		
 	   }
       }
 /*	    
