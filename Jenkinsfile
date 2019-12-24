@@ -44,7 +44,7 @@ pipeline {
       stage('git secret check'){
         steps{
           echo 'running trufflehog to check project history for secrets'
-	  sh 'trufflehog --regex --entropy=False https://github.com/globocom/secDevLabs.git'
+	  sh 'trufflehog --regex --entropy=False https://github.com/globocom/secDevLabs'
         }
       }
       stage('SCA'){
