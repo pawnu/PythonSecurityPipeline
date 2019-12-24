@@ -19,22 +19,24 @@ pipeline {
 
     /* Which agent are we running this pipeline on? We can configure different OS */
     agent any
-    
+/*
+We're setting these up via Dockerfile already
     stages {
       stage('Prepare tools'){
         steps{
           sh """
-	      //virtualenv --no-site-packages .
-	      //source bin/activate
+	      virtualenv --no-site-packages .
+	      source bin/activate
               pip install safety
               pip install trufflehog
               pip install ansible
               pip install boto boto3
               pip install bandit
-              //deactivate
+              deactivate
            """
         }    
       }
+*/      
       stage('Checkout code'){
         steps {
           echo 'downloading git directory..'
