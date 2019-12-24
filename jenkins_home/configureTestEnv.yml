@@ -11,8 +11,8 @@
      apt: name=docker.io state=present
    - name: Install docker-compose
      apt: name=docker-compose update_cache=yes state=present
-   - name: Install lynis
-     apt: name=lynis state=present
+   - name: Install kbtin for lynis to produce html report
+     apt: name=kbtin state=present
    - name: Install make to build the pythonapp
      apt: name=make state=present     
    - name: Copy the zip file of project
