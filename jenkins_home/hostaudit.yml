@@ -1,7 +1,6 @@
 # Run lynis audit on system and fetch logs
 - name: Run host audit in instance(s)
   hosts: tstlaunched
-  become: True
   remote_user: ubuntu
   gather_facts: False
   tasks:
