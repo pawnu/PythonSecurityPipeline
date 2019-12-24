@@ -25,3 +25,11 @@
      fetch:
         src: /tmp/lynis-report.dat
         dest: /var/jenkins_home/
+   - name: Remove log file on host
+     file:
+       path: /tmp/lynis.log
+       state: absent
+   - name: Remove report on host
+     file:
+       path: /tmp/lynis-report.dat
+       state: absent       
