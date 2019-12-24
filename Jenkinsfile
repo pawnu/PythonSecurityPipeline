@@ -12,7 +12,7 @@ Additionally, endpoint protection will be added to deployed server
 */
 
 /* Which python project is it in git */
-pythonproject = "https://github.com/globocom/secDevLabs.git"
+def pythonproject = "https://github.com/globocom/secDevLabs.git"
 def testenv = ""
 
 pipeline {
@@ -38,13 +38,13 @@ pipeline {
       stage('Checkout code'){
         steps {
           echo 'downloading git directory..'
-          git '$pythonproject'
+		git '{$pythonproject}'
         }
       }      
       stage('git secret check'){
         steps{
           echo 'running trufflehog to check project history for secrets'
-          sh 'trufflehog --regex --entropy=False $pythonproject'
+	  sh 'trufflehog --regex --entropy=False {$pythonproject}'
         }
       }
       stage('SCA'){
