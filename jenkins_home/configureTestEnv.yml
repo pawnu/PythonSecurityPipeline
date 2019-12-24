@@ -26,6 +26,5 @@
        copy: no
    - name: Run the application with docker
      shell: make install
-     async: 45
-     poll: 0
-# run the web server as async task, and poll 0 means ansible will fire and forget
+     args:
+       chdir: gossip-world/
