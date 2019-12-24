@@ -25,6 +25,7 @@ cd PythonSecurityPipeline
 sudo sh setup-ubuntu.sh
 ```
 *Note: docker will be running as root and not ubuntu user*
+
 3. Make sure your firewall allows incoming traffic to port 8080. Then, go to your jenkins server URL 
 ```
 http://your-jenkins-server:8080/
@@ -41,9 +42,11 @@ docker logs <your-jenkins-container-name>
 1. Click on New Item, input name for your project and select Pipeline as the option and click OK.
 2. Scroll down to Pipeline section - Definition, select "Pipeline script from SCM" from drop down menu.
 3. Select Git under SCM, and input Repository URL. If you forked this pipeline, you need to update
+
 - AWS region
 - AWS subnet id
 - AWS security group for test server (allow inbound ssh from everywhere, and inbound from 10007 from your ubuntu-server security group.)
+
 4. (Optional) Create and Add your credentials for the Git repo if your repo is private, and click Save.
 5. You will be brought to the Dashboard of your Pipeline project, click on "Build Now" button to start off the pipeline.
 
