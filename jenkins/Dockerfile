@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 	git \
 	perl \
 	wget \
-	lynis
+	p7zip-full
 #Install virtualenv to isolate each project dependencies
 RUN pip install virtualenv
 #Install python SCA tool/dependency checker
