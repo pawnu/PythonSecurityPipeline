@@ -13,8 +13,7 @@ RUN apt-get update && apt-get install -y \
 	maven \
 	git \
 	perl \
-	wget \
-	p7zip-full
+	wget 
 #Install virtualenv to isolate each project dependencies
 RUN pip install virtualenv
 #Install python SCA tool/dependency checker
