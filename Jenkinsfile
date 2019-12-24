@@ -51,7 +51,7 @@ pipeline {
           steps {
               echo 'Audit the dockerfile used to spin up the web application'
 		script{				
-			def exists = fileExists '~/lynis/lynis'
+			def exists = fileExists '~/lynis/README'
 			if(exists){
 				echo 'lynis already exists'
 			}else{
@@ -61,10 +61,11 @@ pipeline {
 			      rm lynis-2.7.5.tar.gz
 			      """
 			}
+			  dir(~/lynis){  
+				sh './lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile'
+			  }			
 		}
-		  dir(~/lynis/){  
-              		sh './lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile'
-		  }
+
           }
       }	    
       stage('Setup stage env') {
