@@ -48,7 +48,7 @@ We're setting these up via Dockerfile already
         steps{
 	  script{
 		echo 'running trufflehog to check project history for secrets'
-		sh 'trufflehog --regex --entropy=False file:///$WORKSPACE/owasp-top10-2017-apps/a7/gossip-world'
+		sh 'trufflehog --regex --entropy=False --max_depth=3 https://github.com/globocom/secDevLabs'
 	  }
         }
       }
@@ -62,9 +62,7 @@ We're setting these up via Dockerfile already
           steps {
               echo 'Testing source code for security bugs and vulnerabilities'
               sh """
-              //source bin/activate
-              bandit -r secDevLabs/owasp-top10-2017-apps/a7/gossip-world/app/ -lll
-              //deactivate
+              bandit -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/ -lll
               """
           }
       }
@@ -72,7 +70,7 @@ We're setting these up via Dockerfile already
           steps {
               echo 'Audit the dockerfile used to spin up the web application'
               sh """
-                lynis audit dockerfile owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile
+                lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile
               """
           }
       }	    
