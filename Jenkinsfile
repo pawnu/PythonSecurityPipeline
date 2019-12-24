@@ -63,7 +63,7 @@ pipeline {
 			}
 		
 		}
-		  dir("~/lynis"){  
+		  dir("/var/jenkins/lynis"){  
 			sh './lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile'
 		  }	
           }
