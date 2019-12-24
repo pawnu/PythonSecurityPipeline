@@ -20,24 +20,7 @@ pipeline {
     /* Which agent are we running this pipeline on? We can configure different OS */
     agent any
 
-    stages {
-/*
-We're setting these up via Dockerfile already
-      stage('Prepare tools'){
-        steps{
-          sh """
-	      virtualenv --no-site-packages .
-	      source bin/activate
-              pip install safety
-              pip install trufflehog
-              pip install ansible
-              pip install boto boto3
-              pip install bandit
-              deactivate
-           """
-        }    
-      }
-*/      
+    stages {   
       stage('Checkout code'){
         steps {
           echo 'downloading git directory..'
@@ -67,19 +50,19 @@ We're setting these up via Dockerfile already
       stage('Container audit') {
           steps {
               echo 'Audit the dockerfile used to spin up the web application'
-		def exists = fileExists '~/lynis/lynis'
-		if(exists){
-			echo 'already exists'
-		}else{
-		      sh """
-		      wget wget https://downloads.cisofy.com/lynis/lynis-2.7.5.tar.gz
-		      tar xfvz lynis-2.7.5.tar.gz -C ~/
-		      rm lynis-2.7.5.tar.gz
-		      """
-		} 		  
-              sh """
-                ~/lynis/lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile
-              """
+		script{				
+			def exists = fileExists '~/lynis/lynis'
+			if(exists){
+				echo 'already exists'
+			}else{
+			      sh """
+			      wget wget https://downloads.cisofy.com/lynis/lynis-2.7.5.tar.gz
+			      tar xfvz lynis-2.7.5.tar.gz -C ~/
+			      rm lynis-2.7.5.tar.gz
+			      """
+			}
+		}	
+              sh '~/lynis/lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile'
           }
       }	    
       stage('Setup stage env') {
@@ -93,16 +76,18 @@ We're setting these up via Dockerfile already
 /*
         stage('DAST') {
           steps {
-                //Test the web application from its frontend
-		def exists = fileExists '~/nikto-master/program/nikto.pl'
-		if(exists){
-			echo 'already exists'
-		}else{
-		      sh """
-			sh 'wget https://github.com/sullo/nikto/archive/master.zip'
-			sh 'unzip master.zip -d ~/'
-			sh 'rm master.zip'
-		      """
+		script{				
+			//Test the web application from its frontend
+			def exists = fileExists '~/nikto-master/program/nikto.pl'
+			if(exists){
+				echo 'already exists'
+			}else{
+			      sh """
+				sh 'wget https://github.com/sullo/nikto/archive/master.zip'
+				sh 'unzip master.zip -d ~/'
+				sh 'rm master.zip'
+			      """
+			}
 		}
 		sh 'perl nikto-master/program/nikto.pl -h http://{$testenv}:10007/login'
 	   }
