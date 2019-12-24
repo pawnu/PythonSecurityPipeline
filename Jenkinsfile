@@ -61,16 +61,24 @@ We're setting these up via Dockerfile already
       stage('SAST') {
           steps {
               echo 'Testing source code for security bugs and vulnerabilities'
-              sh """
-              bandit -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/ -lll
-              """
+	      sh 'bandit -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/ -lll'
           }
       }
       stage('Container audit') {
           steps {
               echo 'Audit the dockerfile used to spin up the web application'
+		def exists = fileExists '~/lynis/lynis'
+		if(exists){
+			echo 'already exists'
+		}else{
+		      sh """
+		      wget wget https://downloads.cisofy.com/lynis/lynis-2.7.5.tar.gz
+		      tar xfvz lynis-2.7.5.tar.gz -C ~/
+		      rm lynis-2.7.5.tar.gz
+		      """
+		} 		  
               sh """
-                lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile
+                ~/lynis/lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile
               """
           }
       }	    
@@ -86,16 +94,18 @@ We're setting these up via Dockerfile already
         stage('DAST') {
           steps {
                 //Test the web application from its frontend
-		def exists = fileExists 'nikto-master/program/nikto.pl'
+		def exists = fileExists '~/nikto-master/program/nikto.pl'
 		if(exists){
 			echo 'already exists'
 		}else{
+		      sh """
 			sh 'wget https://github.com/sullo/nikto/archive/master.zip'
-			sh 'unzip master.zip'
+			sh 'unzip master.zip -d ~/'
 			sh 'rm master.zip'
-			sh 'perl nikto-master/program/nikto.pl -h http://{$testenv}:10007/login'
-		}          
-          }
+		      """
+		}
+		sh 'perl nikto-master/program/nikto.pl -h http://{$testenv}:10007/login'
+	   }
       }
       stage('Host audit') {
           steps {
