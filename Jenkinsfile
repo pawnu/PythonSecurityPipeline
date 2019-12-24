@@ -24,14 +24,14 @@ pipeline {
       stage('Prepare tools'){
         steps{
           sh """
+	      //virtualenv --no-site-packages .
+	      //source bin/activate
               pip install safety
               pip install trufflehog
               pip install ansible
               pip install boto boto3
-              #virtualenv --no-site-packages .
-              #source bin/activate
               pip install bandit
-              #deactivate
+              //deactivate
            """
         }    
       }
@@ -59,9 +59,9 @@ pipeline {
           steps {
               echo 'Testing source code for security bugs and vulnerabilities'
               sh """
-              #source bin/activate
+              //source bin/activate
               bandit -r secDevLabs/owasp-top10-2017-apps/a7/gossip-world/app/ -lll
-              #deactivate
+              //deactivate
               """
           }
       }
