@@ -117,4 +117,13 @@ pipeline {
           }
       }
     }
+    post {
+        always {
+            	echo 'Tear down activity'
+		if("${testenv}" != "null"){
+			echo "killing host ${testenv}"
+			sh 'ansible-playbook -i ~/ansible_hosts ~/killec2.yml'
+		} 
+        }
+    }	
 }
