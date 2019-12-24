@@ -6,9 +6,9 @@ This pipeline will carry out the following on the project:
 3. Static Application Security Testing
 4. Container security audit 
 5. Dynamic Application Security Testing
-6. Host security audit
+6. Host system security audit
+7. Host system endpoint protection
 
-Additionally, endpoint protection will be added to deployed server
 */
 
 /* Which python project is it in git */
@@ -68,7 +68,7 @@ pipeline {
 		  }	
           }
       }	    
-      stage('Setup stage env') {
+      stage('Setup test env') {
           steps {
               sh """
 	      #refresh inventory
@@ -109,13 +109,11 @@ pipeline {
 		
 	   }
       }
-/*	    
-      stage('Host audit') {
+      stage('Host system audit') {
           steps {
-              echo 'Use ansible for this'
+              echo 'Run lynis audit on host and fetch result'
+	      sh 'ansible-playbook -i ~/ansible_hosts ~/hostaudit.yml'  
           }
       }
-      
-*/      
     }
 }
