@@ -103,7 +103,7 @@ pipeline {
 			      """
 			}
 			if("${testenv}" != "null"){
-				sh 'perl /var/jenkins_home/nikto-master/program/nikto.pl -h http://${testenv}:10007/login'
+				sh "perl /var/jenkins_home/nikto-master/program/nikto.pl -h http://${testenv}:10007/login"
 			}  			
 		}
 
