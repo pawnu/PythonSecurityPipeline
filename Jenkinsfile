@@ -53,7 +53,7 @@ pipeline {
 		script{				
 			def exists = fileExists '~/lynis/lynis'
 			if(exists){
-				echo 'already exists'
+				echo 'lynis already exists'
 			}else{
 			      sh """
 			      wget https://downloads.cisofy.com/lynis/lynis-2.7.5.tar.gz
@@ -61,8 +61,10 @@ pipeline {
 			      rm lynis-2.7.5.tar.gz
 			      """
 			}
-		}	
-              sh '~/lynis/lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile'
+		}
+		  dir(~/lynis/){  
+              		sh './lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile'
+		  }
           }
       }	    
       stage('Setup stage env') {
@@ -80,7 +82,7 @@ pipeline {
 			//Test the web application from its frontend
 			def exists = fileExists '~/nikto-master/program/nikto.pl'
 			if(exists){
-				echo 'already exists'
+				echo 'nikto already exists'
 			}else{
 			      sh """
 				sh 'wget https://github.com/sullo/nikto/archive/master.zip'
