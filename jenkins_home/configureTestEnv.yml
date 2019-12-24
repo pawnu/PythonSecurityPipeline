@@ -15,14 +15,14 @@
      apt: name=lynis state=present
    - name: Copy the zip file of project
      copy: 
-       src: binary.zip 
-       dest: /home/ubuntu/binary.zip
+       src: pythonapp.tar.gz 
+       dest: /home/ubuntu/pythonapp.tar.gz
    - name: Unzip it
      unarchive: 
-       src: /home/ubuntu/binary.zip
+       src: /home/ubuntu/pythonapp.tar.gz
        dest: /home/ubuntu/
        copy: no
    - name: Run the application with docker
      shell: make install
-     args:
-       chdir: gossip-world/
+#     args:
+#       chdir: gossip-world/
