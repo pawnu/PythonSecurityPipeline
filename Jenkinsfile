@@ -95,9 +95,9 @@ pipeline {
 				echo 'nikto already exists'
 			}else{
 			      sh """
-				sh 'wget https://github.com/sullo/nikto/archive/master.zip'
-				sh 'unzip master.zip -d ~/'
-				sh 'rm master.zip'
+				wget https://github.com/sullo/nikto/archive/master.zip
+				unzip master.zip -d ~/
+				rm master.zip
 			      """
 			}
 		}
