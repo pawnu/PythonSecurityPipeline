@@ -10,9 +10,11 @@
    - name: Install docker
      apt: name=docker.io state=present
    - name: Install docker-compose
-     apt: name=docker-compose state=present
+     apt: name=docker-compose update_cache=yes state=present
    - name: Install lynis
      apt: name=lynis state=present
+   - name: Install make to build the pythonapp
+     apt: name=make state=present     
    - name: Copy the zip file of project
      copy: 
        src: pythonapp.tar.gz 
@@ -24,5 +26,6 @@
        copy: no
    - name: Run the application with docker
      shell: make install
-#     args:
-#       chdir: gossip-world/
+     async: 45
+     poll: 0
+# run the web server as async task, and poll 0 means ansible will fire and forget
