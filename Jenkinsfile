@@ -38,13 +38,15 @@ pipeline {
       stage('Checkout code'){
         steps {
           echo 'downloading git directory..'
-		git 'https://github.com/globocom/secDevLabs.git'
+	  git 'https://github.com/globocom/secDevLabs.git'
         }
       }      
       stage('git secret check'){
         steps{
-          echo 'running trufflehog to check project history for secrets'
-	  sh 'trufflehog --regex --entropy=False https://github.com/globocom/secDevLabs'
+	  script{
+		echo 'running trufflehog to check project history for secrets'
+		sh 'trufflehog --regex --entropy=False https://github.com/globocom/secDevLabs'
+	  }
         }
       }
       stage('SCA'){
