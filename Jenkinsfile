@@ -61,11 +61,11 @@ pipeline {
 			      rm lynis-2.7.5.tar.gz
 			      """
 			}
-			  dir(~/lynis){  
-				sh './lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile'
-			  }			
+		
 		}
-
+		  dir("~/lynis"){  
+			sh './lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile'
+		  }	
           }
       }	    
       stage('Setup stage env') {
