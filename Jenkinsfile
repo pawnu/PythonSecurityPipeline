@@ -75,11 +75,16 @@ pipeline {
 	      echo "[local]" > ~/ansible_hosts
 	      echo "localhost ansible_connection=local" >> ~/ansible_hosts
 	      echo "[tstlaunched]" >> ~/ansible_hosts
-	      
-	      tar cvfz /var/jenkins_home/pythonapp.tar.gz $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world  
+              """
+	      script{
+		  dir("$WORKSPACE/owasp-top10-2017-apps/a7"){  
+			sh 'tar cvfz /var/jenkins_home/pythonapp.tar.gz /gossip-world'
+		  }		      
+	      }
+              sh """ 
               ssh-keygen -t rsa -N "" -f ~/.ssh/ansible_key || true
               ansible-playbook -i ~/ansible_hosts ~/createAwsEc2.yml
-              """
+              """		  
 	      script{
 		 testenv = sh(script: "sed -n '/tstlaunched/{n;p;}' /var/jenkins_home/ansible_hosts", returnStdout: true)
 	      }
