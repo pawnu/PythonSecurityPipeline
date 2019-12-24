@@ -51,7 +51,7 @@ pipeline {
           steps {
               echo 'Audit the dockerfile used to spin up the web application'
 		script{				
-			def exists = fileExists '~/lynis/README'
+			def exists = fileExists '/var/jenkins_home/lynis/lynis'
 			if(exists){
 				echo 'lynis already exists'
 			}else{
@@ -63,7 +63,7 @@ pipeline {
 			}
 		
 		}
-		  dir("/var/jenkins/lynis"){  
+		  dir("/var/jenkins_home/lynis"){  
 			sh './lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile'
 		  }	
           }
