@@ -56,7 +56,7 @@ pipeline {
 				echo 'already exists'
 			}else{
 			      sh """
-			      wget wget https://downloads.cisofy.com/lynis/lynis-2.7.5.tar.gz
+			      wget https://downloads.cisofy.com/lynis/lynis-2.7.5.tar.gz
 			      tar xfvz lynis-2.7.5.tar.gz -C ~/
 			      rm lynis-2.7.5.tar.gz
 			      """
