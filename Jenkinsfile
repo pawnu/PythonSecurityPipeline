@@ -64,8 +64,9 @@ pipeline {
 		
 		}
 		  dir("/var/jenkins_home/lynis"){  
-			sh './lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile'
-		  }	
+			sh './lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile | ansi2html > report.html'
+		  }
+		  sh 'mv /var/jenkins_home/lynis/report.html $WORKSPACE/docker-report.html' 
           }
       }	    
       stage('Setup test env') {
@@ -98,7 +99,7 @@ pipeline {
 			}else{
 			      sh """
 				wget https://github.com/sullo/nikto/archive/master.zip
-				unzip master.zip -d ~/
+				unzip master.zip -d ~/ || true
 				rm master.zip
 			      """
 			}
@@ -113,7 +114,8 @@ pipeline {
       stage('Host system audit') {
           steps {
               echo 'Run lynis audit on host and fetch result'
-	      sh 'ansible-playbook -i ~/ansible_hosts ~/hostaudit.yml'  
+	      sh 'ansible-playbook -i ~/ansible_hosts ~/hostaudit.yml'
+	      sh 'mv /var/jenkins_home/report.html $WORKSPACE/host-security-report.html'  
           }
       }
     }
