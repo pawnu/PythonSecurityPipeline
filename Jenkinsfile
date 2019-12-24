@@ -91,7 +91,7 @@ pipeline {
           steps {
 		script{				
 			//Test the web application from its frontend
-			def exists = fileExists '~/nikto-master/program/nikto.pl'
+			def exists = fileExists '/var/jenkins_home/nikto-master/program/nikto.pl'
 			if(exists){
 				echo 'nikto already exists'
 			}else{
