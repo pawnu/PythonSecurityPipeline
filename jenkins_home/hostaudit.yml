@@ -6,8 +6,9 @@
   gather_facts: False
   tasks:
    - name: Get the lynis installer
-     get_url: https://downloads.cisofy.com/lynis/lynis-2.7.5.tar.gz
-     dest: /tmp/
+     get_url: 
+       url: https://downloads.cisofy.com/lynis/lynis-2.7.5.tar.gz
+       dest: /tmp/
    - name: Unzip it
      unarchive: 
        src: /tmp/lynis-2.7.5.tar.gz
