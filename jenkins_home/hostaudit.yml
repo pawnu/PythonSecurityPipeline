@@ -1,0 +1,27 @@
+# Configure launched instance for test
+- name: Run host audit in instance(s)
+  hosts: tstlaunched
+  become: True
+  remote_user: ubuntu
+  gather_facts: False
+  tasks:
+   - name: Get the lynis installer
+     get_url: https://downloads.cisofy.com/lynis/lynis-2.7.5.tar.gz
+     dest: /tmp/
+   - name: Unzip it
+     unarchive: 
+       src: /tmp/lynis-2.7.5.tar.gz
+       dest: /home/ubuntu/
+       copy: no     
+   - name: Run system audit
+     shell: ./lynis audit system --quick --auditor "The Auditor"
+     args:
+       chdir: lynis/
+   - name: Fetch log file from host
+     fetch:
+        src: /tmp/lynis.log
+        dest: /var/jenkins_home/
+   - name: Fetch report file from host
+     fetch:
+        src: /tmp/lynis-report.dat
+        dest: /var/jenkins_home/
