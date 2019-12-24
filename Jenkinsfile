@@ -102,10 +102,11 @@ pipeline {
 				rm master.zip
 			      """
 			}
+			if("${testenv}" != "null"){
+				sh 'perl /var/jenkins_home/nikto-master/program/nikto.pl -h http://${testenv}:10007/login'
+			}  			
 		}
-		if("${testenv}" != "null"){
-			sh 'perl /var/jenkins_home/nikto-master/program/nikto.pl -h http://${testenv}:10007/login'
-		}  
+
 		
 	   }
       }
