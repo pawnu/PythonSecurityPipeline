@@ -76,7 +76,7 @@ pipeline {
 	      echo "localhost ansible_connection=local" >> ~/ansible_hosts
 	      echo "[tstlaunched]" >> ~/ansible_hosts
 	      
-	      tar cvfz pythonapp.tar.gz $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world  
+	      tar cvfz /var/jenkins_home/pythonapp.tar.gz $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world  
               ssh-keygen -t rsa -N "" -f ~/.ssh/ansible_key || true
               ansible-playbook -i ~/ansible_hosts ~/createAwsEc2.yml
               """
