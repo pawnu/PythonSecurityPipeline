@@ -1,0 +1,25 @@
+#terminate leftover test instance
+---
+- name: Get instances from the group for test vms
+  hosts: tstlaunched
+  gather_facts: True
+  become: True
+  remote_user: ubuntu
+  tasks:
+    # get instance details from ec2 metadata
+    - ec2_facts:
+    # get the instance-id
+    - debug: msg= "{{ hostvars[inventory_hostname]['ansible_ec2_instance_id'] }}"
+
+- hosts: tstlaunched
+  gather_facts: True
+  connection: local
+  vars:
+    region: "eu-west-2"
+  tasks:
+    - name: destroy all instances
+      ec2: state='absent'
+           region={{ region }}
+           instance_ids={{ item }}
+           wait=true
+      with_items: hostvars[inventory_hostname]['ansible_ec2_instance_id']
