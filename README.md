@@ -13,6 +13,7 @@ Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pi
 - [ ] Use cloudformation template to automate the whole setup or environment
 
 ## Environment configuration manual steps
+Assign your ubuntu server IAM role for full ec2 access on your region of choice.
 
 1. Clone this repository to your Ubuntu Server
 ```
@@ -23,29 +24,26 @@ git clone https://github.com/pawnu/PythonSecurityPipeline.git
 cd PythonSecurityPipeline
 sudo sh setup-ubuntu.sh
 ```
-3. Restart the Ubuntu server to finish installation
-4. Build the Jenkins docker container and run it
-```
-cd PythonSecurityPipeline
-docker-compose up -d --build
-```
-5. Make sure your firewall allows incoming traffic to port 8080. Then, go to your jenkins server URL 
+*Note: docker will be running as root and not ubuntu user*
+3. Make sure your firewall allows incoming traffic to port 8080. Then, go to your jenkins server URL 
 ```
 http://your-jenkins-server:8080/
 ```
-6. Input the admin password from the docker logs generated, and create Jenkins user.
+4. Input the admin password from the docker logs generated, and create Jenkins user.
 ```
 docker ps
 docker logs <your-jenkins-container-name>
 ```
 
-7. Continue with the setup to get to Jenkins main page
-8. Go to Manage Jenkins- Configure Systems - Shell - Shell Executable. Add /bin/bash as the executable for Python's virtualenv to work correctly.
+5. Continue with the setup to get to Jenkins main page
 
 ## Setting up a Jenkins Pipeline project manually
 1. Click on New Item, input name for your project and select Pipeline as the option and click OK.
 2. Scroll down to Pipeline section - Definition, select "Pipeline script from SCM" from drop down menu.
-3. Select Git under SCM, and input Repository URL such as `https://github.com/pawnu/jenkinspythondemo.git`
+3. Select Git under SCM, and input Repository URL. If you forked this pipeline, you need to update
+- AWS region
+- AWS subnet id
+- AWS security group for test server (allow inbound ssh from everywhere, and inbound from 10007 from your ubuntu-server security group.)
 4. (Optional) Create and Add your credentials for the Git repo if your repo is private, and click Save.
 5. You will be brought to the Dashboard of your Pipeline project, click on "Build Now" button to start off the pipeline.
 
