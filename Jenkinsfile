@@ -81,7 +81,7 @@ pipeline {
               ansible-playbook -i ~/ansible_hosts ~/createAwsEc2.yml
               """
 	      script{
-		 testenv = sh(sed -n '/tstlaunched/{n;p;}' /var/jenkins_home/ansible_hosts)
+		 testenv = sh(script: "sed -n '/tstlaunched/{n;p;}' /var/jenkins_home/ansible_hosts", returnStdout: true)
 	      }
 	      sh  'ansible-playbook -i ~/ansible_hosts ~/configureTestEnv.yml'
           }
