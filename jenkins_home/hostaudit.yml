@@ -1,4 +1,4 @@
-# Configure launched instance for test
+# Run lynis audit on system and fetch logs
 - name: Run host audit in instance(s)
   hosts: tstlaunched
   become: True
