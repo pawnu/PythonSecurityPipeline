@@ -9,14 +9,25 @@ MAINTAINER pawan uppadey <pawan.uppadey@gmail.com>
 USER root
 RUN apt-get update && apt-get install -y \
 	python-pip \
-	python3 \
-	python3-pip \
 	curl \
 	maven \
 	git \
 	perl \
 	wget \
 	lynis
+#Install virtualenv to isolate each project dependencies
+RUN pip install virtualenv
+#Install python SCA tool/dependency checker
+RUN pip install safety
+#Install the git history checker for secrets
+RUN pip install trufflehog
+#Install python SAST tool
+RUN pip install bandit
+
+#install the orchestration tool, boto for ec2 module, some lib upgrade under requests
+RUN pip install ansible
+RUN pip install boto boto3
+
 # configure ansible to use right keys and not check host auth for ephemeral hosts
 # not checking hosts for long term hosts may lead to mitm..
 COPY ansible.cfg /etc/ansible/ansible.cfg
