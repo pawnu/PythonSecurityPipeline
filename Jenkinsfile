@@ -19,9 +19,10 @@ pipeline {
 
     /* Which agent are we running this pipeline on? We can configure different OS */
     agent any
+
+    stages {
 /*
 We're setting these up via Dockerfile already
-    stages {
       stage('Prepare tools'){
         steps{
           sh """
