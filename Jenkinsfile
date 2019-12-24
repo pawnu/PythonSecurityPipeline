@@ -48,14 +48,14 @@ We're setting these up via Dockerfile already
         steps{
 	  script{
 		echo 'running trufflehog to check project history for secrets'
-		sh 'trufflehog --regex --entropy=False file:///$WORKSPACE/$JOB_NAME/owasp-top10-2017-apps/a7/gossip-world'
+		sh 'trufflehog --regex --entropy=False file:///$WORKSPACE/owasp-top10-2017-apps/a7/gossip-world'
 	  }
         }
       }
       stage('SCA'){
         steps{
           echo 'running python safety check on requirements.txt file'
-          sh 'safety check -r $WORKSPACE/$JOB_NAME/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt'
+          sh 'safety check -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt'
         }
       }  
       stage('SAST') {
