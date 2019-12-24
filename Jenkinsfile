@@ -72,7 +72,7 @@ pipeline {
           steps {
               sh """
               ssh-keygen -t rsa -N "" -f ~/.ssh/ansible_key || true
-              ansible-playbook ~/createAwsEc2.yml
+              ansible-playbook -i ~/ansible_hosts ~/createAwsEc2.yml
               """
           }
       }
