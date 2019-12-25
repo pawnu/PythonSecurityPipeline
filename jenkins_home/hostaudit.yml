@@ -29,7 +29,7 @@
         flat: yes
    - name: Fetch fancy html report
      fetch:
-        src: /home/ubuntu/lynis/report.html
+        src: /home/ubuntu/lynis/host_audit_report.html
         dest: "{{ logfolder }}"
         flat: yes
    - name: Remove html report on host
