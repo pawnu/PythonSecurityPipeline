@@ -43,7 +43,7 @@ pipeline {
       stage('SAST') {
           steps {
               echo 'Testing source code for security bugs and vulnerabilities'
-	      sh 'bandit -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/ -lll'
+	      sh 'bandit -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/ -ll || true'
           }
       }
       stage('Container audit') {
