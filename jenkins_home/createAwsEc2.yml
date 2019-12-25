@@ -5,7 +5,7 @@
   connection: local
   gather_facts: False
   vars:
-    keyname: ansible_key
+    keyname: psp_ansible_key
     instance_type: t2.micro
     security_group: launch-wizard-1
     image: ami-0be057a22c63962cb
