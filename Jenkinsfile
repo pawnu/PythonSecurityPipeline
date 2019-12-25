@@ -122,6 +122,7 @@ pipeline {
     }
     post {
         always {
+		echo 'happy now? you have a stage in this block'
 		/*
 		echo 'Tear down activity'
 		script{
