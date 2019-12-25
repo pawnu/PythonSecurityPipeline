@@ -14,25 +14,27 @@
        dest: /home/ubuntu/
        copy: no     
    - name: Run system audit
-     shell: ./lynis audit system --quick --auditor "The Auditor" | ansi2html > report.html
+     shell: ./lynis audit system --quick --auditor "The Auditor" | ansi2html > host_audit_report.html
      args:
        chdir: lynis/
    - name: Fetch log file from host
      fetch:
         src: /tmp/lynis.log
-        dest: /var/jenkins_home/
+        dest: "{{ logfolder }}"
+        flat: yes
    - name: Fetch report file from host
      fetch:
         src: /tmp/lynis-report.dat
-        dest: /var/jenkins_home/
+        dest: "{{ logfolder }}"
+        flat: yes
    - name: Fetch fancy html report
      fetch:
         src: /home/ubuntu/lynis/report.html
-        dest: /var/jenkins_home/
+        dest: "{{ logfolder }}"
         flat: yes
    - name: Remove html report on host
      file:
-       path: /home/ubuntu/lynis/report.html
+       path: /home/ubuntu/lynis/host_audit_report.html
        state: absent        
    - name: Remove log file on host
      file:
