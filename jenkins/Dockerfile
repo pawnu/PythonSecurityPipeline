@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:jdk11
+FROM jenkins/jenkins:lts
 MAINTAINER pawan uppadey <pawan.uppadey@gmail.com>
 
 #Install Jenkins plugin to make this pipeline work
