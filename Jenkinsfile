@@ -7,7 +7,7 @@ This pipeline will carry out the following on the project:
 4. Container security audit 
 5. Dynamic Application Security Testing
 6. Host system security audit
-7. Host system endpoint protection
+7. Host application protection
 
 */
 
@@ -69,7 +69,6 @@ pipeline {
 			mv /tmp/lynis-report.dat $WORKSPACE/$BUILD_TAG/docker_lynis-report.dat
 			"""
 		  }
-		  //sh 'mv /var/jenkins_home/lynis/docker-report.html $WORKSPACE/$BUILD_TAG/docker-report.html' 
           }
       }	    
       stage('Setup test env') {
@@ -112,17 +111,22 @@ pipeline {
 		}
 	   }
       }
-      stage('Host system audit') {
+      stage('System security audit') {
           steps {
               echo 'Run lynis audit on host and fetch result'
 	      sh 'ansible-playbook -i ~/ansible_hosts ~/hostaudit.yml --extra-vars "logfolder=$WORKSPACE/$BUILD_TAG/"'
-	      //sh 'mv /var/jenkins_home/host-security-report.html $WORKSPACE/$BUILD_TAG/host-security-report.html'  
           }
       }
+      stage('Deploy WAF') {
+          steps {
+              echo 'Deploy modsecurity as reverse proxy'
+	      sh 'ansible-playbook -i ~/ansible_hosts ~/configureWAF.yml'
+	  }
+      }	    
     }
     post {
         always {
-		echo 'happy now? you have a stage in this block'
+		echo 'We could bring down the ec2 here'
 		/*
 		echo 'Tear down activity'
 		script{
