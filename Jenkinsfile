@@ -63,6 +63,7 @@ pipeline {
 		}
 		  dir("/var/jenkins_home/lynis"){  
 			sh """
+			mkdir $WORKSPACE/$BUILD_TAG/
 			./lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile | ansi2html > $WORKSPACE/$BUILD_TAG/docker-report.html
 			mv /tmp/lynis.log $WORKSPACE/$BUILD_TAG/docker_lynis.log
 			mv /tmp/lynis-report.dat $WORKSPACE/$BUILD_TAG/docker_lynis-report.dat
