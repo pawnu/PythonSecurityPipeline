@@ -16,10 +16,9 @@ def pythonproject = "https://github.com/globocom/secDevLabs.git"
 testenv = "null"
 
 pipeline {
-
     /* Which agent are we running this pipeline on? We can configure different OS */
     agent any
-
+	
     stages {   
       stage('Checkout project'){
         steps {
@@ -61,12 +60,15 @@ pipeline {
 			      rm lynis-2.7.5.tar.gz
 			      """
 			}
-		
 		}
 		  dir("/var/jenkins_home/lynis"){  
-			sh './lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile | ansi2html > report.html'
+			sh """
+			./lynis audit dockerfile $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/deployments/Dockerfile | ansi2html > $WORKSPACE/$BUILD_TAG/docker-report.html
+			mv /tmp/lynis.log $WORKSPACE/$BUILD_TAG/docker_lynis.log
+			mv /tmp/lynis-report.dat $WORKSPACE/$BUILD_TAG/docker_lynis-report.dat
+			"""
 		  }
-		  sh 'mv /var/jenkins_home/lynis/report.html $WORKSPACE/docker-report.html' 
+		  //sh 'mv /var/jenkins_home/lynis/docker-report.html $WORKSPACE/$BUILD_TAG/docker-report.html' 
           }
       }	    
       stage('Setup test env') {
@@ -107,15 +109,13 @@ pipeline {
 				sh "perl /var/jenkins_home/nikto-master/program/nikto.pl -h http://${testenv}:10007/login"
 			}  			
 		}
-
-		
 	   }
       }
       stage('Host system audit') {
           steps {
               echo 'Run lynis audit on host and fetch result'
-	      sh 'ansible-playbook -i ~/ansible_hosts ~/hostaudit.yml'
-	      sh 'mv /var/jenkins_home/report.html $WORKSPACE/host-security-report.html'  
+	      sh 'ansible-playbook -i ~/ansible_hosts ~/hostaudit.yml --extra-vars "logfolder=$WORKSPACE/$BUILD_TAG/"'
+	      //sh 'mv /var/jenkins_home/host-security-report.html $WORKSPACE/$BUILD_TAG/host-security-report.html'  
           }
       }
     }
