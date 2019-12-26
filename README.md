@@ -11,7 +11,7 @@ Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pi
 - [x] Set up Jenkins server using docker (Dockerfile) and pipeline as code (Jenkinsfile) to run the checks
 - [x] Use ansible to create AWS ec2 test instance, and configure the environment
 - [x] Hook up the app with ~~nginx~~+modsecurity providing WAF, ~~DDoS protection~~, reverse proxy capabilities
-- [ ] Bootstrap with Jenkins API/configfile to setup and automatically create the pipeline job
+- [x] Bootstrap with Jenkins API/configfile to setup and automatically create the pipeline job
 - [ ] Use cloudformation template to automate the whole setup or environment
 
 ## Environment configuration manual steps
