@@ -6,8 +6,6 @@ apt-get install -y docker-compose
 
 #have to relogin as ubuntu user
 usermod -aG docker ubuntu
-# restart new session with group
-#newgrp docker
 
 #let docker run when server is restarted
 systemctl enable docker
@@ -24,8 +22,12 @@ docker-compose up -d --build
 
 #Create the jenkins job
 apt install default-jre -y
+
+# restart new session with docker group
+newgrp docker
+
 sleep 10
-wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+/usr/bin/wget http://localhost:8080/jnlpJars/jenkins-cli.jar
 sleep 5
 java -jar ./jenkins-cli.jar -s http://localhost:8080 -auth myjenkins:$Jenkins_PW create-job pythonpipeline < config.xml
 
