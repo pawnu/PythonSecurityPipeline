@@ -2,6 +2,8 @@
 
 Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pipeline for Python web application
 
+![pipeline](https://user-images.githubusercontent.com/11514346/71473164-e57a5500-27cd-11ea-97cb-3c25f0266407.JPG)
+
 *Disclaimer: This project is for prototype with surface level checks only, do not use it for deploying to production*
 
 **TO DO:**
