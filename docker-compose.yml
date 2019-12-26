@@ -10,3 +10,6 @@ services:
     volumes:
       - ./jenkins_home:/var/jenkins_home
     container_name: jenkins-master
+    environment:
+      - "Jenkins_PW=${Jenkins_PW}"
+      - "JAVA_OPTS=${JAVA_OPTS}"
