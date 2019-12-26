@@ -51,7 +51,5 @@ docker logs <your-jenkins-container-name>
 
 ## Authors
 
-* **Pawan Uppadey** - *Initial work* - [pawnu](https://github.com/pawnu)
-
-See also the list of [contributors](https://github.com/pawnu/PythonSecurityPipeline/contributors) who participated in this project.
+* **Pawan Uppadey** - [pawnu](https://github.com/pawnu)
 
