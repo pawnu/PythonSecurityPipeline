@@ -8,6 +8,9 @@ apt install default-jre -y
 #have to relogin as ubuntu user
 usermod -aG docker ubuntu
 
+# restart new session with docker group
+#newgrp docker
+
 #let docker run when server is restarted
 systemctl enable docker
 
@@ -21,12 +24,14 @@ export JenkinsPublicIp=$(curl -s http://169.254.169.254/latest/meta-data/public-
 #build the jenkins container
 docker-compose up -d --build
 
-# restart new session with docker group
-#newgrp docker
+#let the jenkins docker complete bootstrapping with our groovy script provided
+sleep 15
+
+#create new environment without inheriting anything from this shell for this wget to work..
+env -i /bin/bash -c 'wget http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar'
 
 sleep 5
-wget http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar
-sleep 5
+#create the pipeline in jenkins
 java -jar ./jenkins-cli.jar -s http://localhost:8080 -auth myjenkins:$Jenkins_PW create-job pythonpipeline < config.xml
 
 echo "------- Your temporary Jenkins login ---------"
