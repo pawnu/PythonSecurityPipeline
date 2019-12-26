@@ -14,6 +14,7 @@ systemctl enable docker
 
 #create random password for jenkins user which will be created automatically
 export Jenkins_PW=$(openssl rand -base64 16)
+export JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
 #build the jenkins container
 docker-compose up -d --build
