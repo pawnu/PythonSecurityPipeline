@@ -3,7 +3,7 @@ MAINTAINER pawan uppadey <pawan.uppadey@gmail.com>
 
 #Install Jenkins plugin to make this pipeline work
 #COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-#RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < plugins.txt
 
 #setup the docker container for scanners
 USER root
