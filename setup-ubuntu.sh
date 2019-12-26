@@ -25,7 +25,7 @@ docker-compose up -d --build
 #newgrp docker
 
 sleep 5
-wget --no-proxy http://localhost:8080/jnlpJars/jenkins-cli.jar
+wget http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar
 sleep 5
 java -jar ./jenkins-cli.jar -s http://localhost:8080 -auth myjenkins:$Jenkins_PW create-job pythonpipeline < config.xml
 
