@@ -15,6 +15,10 @@ systemctl enable docker
 #create random password for jenkins user which will be created automatically
 export Jenkins_PW=$(openssl rand -base64 16)
 export JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
+
+#we're providing the server its public ip for its relative links
+export JenkinsPublicIp=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+
 echo "------- Your temporary PW ---------"
 echo $Jenkins_PW
 
