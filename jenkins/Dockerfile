@@ -6,7 +6,7 @@ COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 #Copy script to auto create user to jenkins init folder
-COPY createuser.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY setupJenkins.groovy /usr/share/jenkins/ref/init.groovy.d/
 
 #setup the docker container for scanners
 USER root
