@@ -14,7 +14,9 @@ RUN apt-get update && apt-get install -y \
 	git \
 	perl \
 	wget \
-	kbtin
+	kbtin \
+	libnet-ssleay-perl
+	
 #Install virtualenv to isolate each project dependencies
 RUN pip install virtualenv
 #Install python SCA tool/dependency checker
