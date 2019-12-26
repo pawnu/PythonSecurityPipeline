@@ -3,6 +3,10 @@ import hudson.security.*
 
 def env = System.getenv()
 
+jlc = JenkinsLocationConfiguration.get()
+jlc.setUrl("http://"+env.JenkinsPublicIp +":8080/")
+jlc.save()    
+
 def jenkins = Jenkins.getInstance()
 if(!(jenkins.getSecurityRealm() instanceof HudsonPrivateSecurityRealm))
     jenkins.setSecurityRealm(new HudsonPrivateSecurityRealm(false))
