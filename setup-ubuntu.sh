@@ -3,6 +3,7 @@
 apt-get update
 apt install docker.io -y
 apt-get install -y docker-compose
+apt install default-jre -y
 
 #have to relogin as ubuntu user
 usermod -aG docker ubuntu
@@ -14,20 +15,17 @@ systemctl enable docker
 export Jenkins_PW=$(openssl rand -base64 16)
 export JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
-#we're providing the server its public ip for its relative links
-export JenkinsPublicIp=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+#we're providing the server its public hostname for its relative links
+export JenkinsPublicIp=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
 
 #build the jenkins container
 docker-compose up -d --build
 
-#Create the jenkins job
-apt install default-jre -y
-
 # restart new session with docker group
-newgrp docker
+#newgrp docker
 
-sleep 10
-/usr/bin/wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+sleep 5
+wget --no-proxy http://localhost:8080/jnlpJars/jenkins-cli.jar
 sleep 5
 java -jar ./jenkins-cli.jar -s http://localhost:8080 -auth myjenkins:$Jenkins_PW create-job pythonpipeline < config.xml
 
