@@ -19,9 +19,6 @@ export JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 #we're providing the server its public ip for its relative links
 export JenkinsPublicIp=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
 
-echo "------- Your temporary PW ---------"
-echo $Jenkins_PW
-
 #build the jenkins container
 docker-compose up -d --build
 
@@ -31,3 +28,7 @@ sleep 5
 wget http://localhost:8080/jnlpJars/jenkins-cli.jar
 sleep 5
 java -jar ./jenkins-cli.jar -s http://localhost:8080 -auth myjenkins:$Jenkins_PW create-job pythonpipeline < config.xml
+
+echo "------- Your temporary Jenkins login ---------"
+echo "myjenkins"
+echo $Jenkins_PW
