@@ -13,3 +13,4 @@ services:
     environment:
       - "Jenkins_PW=${Jenkins_PW}"
       - "JAVA_OPTS=${JAVA_OPTS}"
+      - "JenkinsPublicIp=${JenkinsPublicIp}"
