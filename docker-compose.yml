@@ -14,3 +14,10 @@ services:
       - "Jenkins_PW=${Jenkins_PW}"
       - "JAVA_OPTS=${JAVA_OPTS}"
       - "JenkinsPublicIp=${JenkinsPublicIp}"
+  selenium-chrome:
+    image: selenium/standalone-chrome
+    restart: always
+    ports:
+      - "4444:4444"
+    volumes:
+      - "/dev/shm:/dev/shm"
