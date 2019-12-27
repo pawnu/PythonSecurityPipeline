@@ -67,4 +67,4 @@ for cookie in cookies_list:
     nikto_string+= '\"'+ cookie['value'] + '\"'
 bash_command("cp nikto-config.txt new-nikto-config.txt")
 bash_command("echo '" + nikto_string +"' >> new-nikto-config.txt")
-bash_command("nikto -ask no -config new-nikto-config.txt -Format html -h http://"+sys.argv[1]+":10007/gossip -output "+ sys.argv[2])
+bash_command("/var/jenkins_home/nikto-master/program/nikto.pl -ask no -config new-nikto-config.txt -Format html -h http://"+sys.argv[1]+":10007/gossip -output "+ sys.argv[2])
