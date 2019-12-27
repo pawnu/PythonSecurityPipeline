@@ -38,8 +38,9 @@ pipeline {
           sh 'safety check -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt'
           echo 'running liccheck on dependencies'
 	  sh """
+	      #!/bin/bash
               virtualenv --no-site-packages .
-              . bin/activate
+              source bin/activate
 	      pip install -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt
               liccheck -s ~/my_strategy.ini -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt
               deactivate
