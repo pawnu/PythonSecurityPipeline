@@ -22,8 +22,9 @@ RUN apt-get update && apt-get install -y \
 	
 #Install virtualenv to isolate each project dependencies
 RUN pip install virtualenv
-#Install python SCA tool/dependency checker
+#Install python SCA tool/dependency checker, license check
 RUN pip install safety
+RUN pip install liccheck
 #Install the git history checker for secrets
 RUN pip install trufflehog
 #Install python SAST tool
