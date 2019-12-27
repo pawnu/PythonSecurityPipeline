@@ -35,8 +35,8 @@ RUN pip install ansible
 RUN pip install boto 
 RUN pip install boto3
 
-# configure ansible to use right keys and not check host auth for ephemeral hosts
-# not checking hosts for long term hosts may lead to mitm..
+# configure ansible to use right keys and not check host auth for this ephemeral/temp aws host
+# Not authenticating existing/long-term hosts requiring relogins may lead to mitm.. be careful
 COPY ansible.cfg /etc/ansible/ansible.cfg
 
 # drop back to the regular jenkins user - good practice
