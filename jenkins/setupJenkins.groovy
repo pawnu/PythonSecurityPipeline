@@ -11,13 +11,13 @@ Jenkins.instance.getInjector().getInstance(AdminWhitelistRule.class)
 def env = System.getenv()
 
 /*
-Jenkins needs URL in order for reference links to other resources, pipeline build etc
+Jenkins needs URL in order for reference links to point to other pages, resources, pipeline build etc
 */
 jlc = JenkinsLocationConfiguration.get()
 jlc.setUrl("http://"+env.JenkinsPublicIp +":8080/")
 jlc.save()    
 
-//CSFR token
+//Set CSRF token for Jenkins server
 def instance = Jenkins.instance
 instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
 instance.save()
