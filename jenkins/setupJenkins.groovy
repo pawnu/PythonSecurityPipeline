@@ -14,7 +14,7 @@ def env = System.getenv()
 Jenkins needs URL in order for reference links to point to other pages, resources, pipeline build etc
 */
 jlc = JenkinsLocationConfiguration.get()
-jlc.setUrl("http://"+env.JenkinsPublicIp +":8080/")
+jlc.setUrl("http://"+env.JenkinsPublicHostname +":8080/")
 jlc.save()    
 
 //Set CSRF token for Jenkins server
