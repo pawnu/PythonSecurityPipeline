@@ -36,7 +36,8 @@ pipeline {
         steps{
           echo 'running python safety check on requirements.txt file'
           sh 'safety check -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt'
-          echo 'running liccheck on dependencies'
+          /*
+	  echo 'running liccheck on dependencies'
 	  sh """
               virtualenv --no-site-packages .
               source bin/activate
@@ -44,6 +45,7 @@ pipeline {
               liccheck -s ~/my_strategy.ini -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt
               deactivate
             """
+	    */
         }
       }  
       stage('SAST') {
