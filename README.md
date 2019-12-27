@@ -35,11 +35,11 @@ http://your-jenkins-server:8080/
 4. Use the temporary credentials provided on bash logs to login. Change your password!
 5. You need to update the following code varaibles in order for this project to work on your AWS
 
-```
+
 - Assign your ubuntu server IAM role for full ec2 access on eu-west-2 region
-- Change AWS subnet id
-- Change AWS security group id for test server (allow inbound ssh and 10007 from your ubuntu-server's security group)
-```
+- Change AWS subnet [vpc_subnet_id](jenkins_home/createAwsEc2.yml#L30) 
+- Change AWS [security_group](jenkins_home/createAwsEc2.yml#L10) in code (allow inbound ssh and 10007 from your ubuntu-server's security group)
+
 
 *This is to be automated later with ansible/CloudFormation*
 
