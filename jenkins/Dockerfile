@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
 	perl \
 	wget \
 	kbtin \
+	nikto \
 	libnet-ssleay-perl
 	
 #Install virtualenv to isolate each project dependencies
@@ -29,6 +30,9 @@ RUN pip install liccheck
 RUN pip install trufflehog
 #Install python SAST tool
 RUN pip install bandit
+
+# Used for authenticated DAST scan
+RUN pip install selenium
 
 #install the orchestration tool, boto for ec2 module, some lib upgrade under requests
 RUN pip install ansible
