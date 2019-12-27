@@ -18,6 +18,7 @@ services:
   selenium-chrome:
     image: selenium/standalone-chrome
     restart: always
+    container_name: selenium-chrome
     ports:
       - "4444:4444"
     volumes:
