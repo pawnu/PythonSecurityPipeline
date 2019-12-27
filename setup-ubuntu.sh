@@ -19,8 +19,8 @@ export Jenkins_PW=$(openssl rand -base64 16)
 export JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
 #we're providing the server its public hostname for its relative links
-export JenkinsPublicIp=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
-
+export JenkinsPublicHostname=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
+export SeleniumPrivateIp=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
 #build the jenkins container
 docker-compose up -d --build
 
