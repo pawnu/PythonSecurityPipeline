@@ -107,7 +107,7 @@ pipeline {
 			      """
 			}
 			if("${testenv}" != "null"){
-				sh 'python authDAST.py ${testenv} $WORKSPACE/$BUILD_TAG/DAST_results.html'
+				sh 'python ~/authDAST.py ${testenv} $WORKSPACE/$BUILD_TAG/DAST_results.html'
 				//sh "perl /var/jenkins_home/nikto-master/program/nikto.pl -h http://${testenv}:10007/login"
 			}  			
 		}
