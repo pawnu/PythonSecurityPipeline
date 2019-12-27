@@ -17,14 +17,15 @@ def bash_command(cmd):
 myusername = randomString(8)
 mypassword = randomString(12)
 
-if len(sys.argv) < 3:
-    print 'Provide the ip address to do DAST scan!'
-    print 'Provide the output location of html report!'
+if len(sys.argv) < 4:
+    print '1. Provide the ip address for selenium remote server!'
+    print '2. Provide the ip address for target DAST scan!'
+    print '3. Provide the output location of html report!'
     sys.exit(1)
 
 driver = webdriver.Remote("http://"+sys.argv[1]+":4444/wd/hub", DesiredCapabilities.CHROME)
 
-driver.get("http://"+sys.argv[1]+":10007/login")
+driver.get("http://"+sys.argv[2]+":10007/login")
 
 registerbutton = driver.find_element_by_xpath("/html/body/div/div/div/form/center[3]/a")
 registerbutton.click()
@@ -47,7 +48,7 @@ assert "Login" in login.text
 
 print("created user")
 
-driver.get("http://"+sys.argv[1]+":10007/login")
+driver.get("http://"+sys.argv[2]+":10007/login")
 print("we're at: " + driver.current_url)
 username = driver.find_element_by_name("username")
 password = driver.find_element_by_name("password")
@@ -67,4 +68,4 @@ for cookie in cookies_list:
     nikto_string+= '\"'+ cookie['value'] + '\"'
 bash_command("cp ~/nikto-config.txt ~/new-nikto-config.txt")
 bash_command("echo '" + nikto_string +"' >> ~/new-nikto-config.txt")
-bash_command("/var/jenkins_home/nikto-master/program/nikto.pl -ask no -config ~/new-nikto-config.txt -Format html -h http://"+sys.argv[1]+":10007/gossip -output "+ sys.argv[2])
+bash_command("/var/jenkins_home/nikto-master/program/nikto.pl -ask no -config ~/new-nikto-config.txt -Format html -h http://"+sys.argv[2]+":10007/gossip -output "+ sys.argv[3])
