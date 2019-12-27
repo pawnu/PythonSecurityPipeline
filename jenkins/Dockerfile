@@ -18,7 +18,6 @@ RUN apt-get update && apt-get install -y \
 	perl \
 	wget \
 	kbtin \
-	nikto \
 	libnet-ssleay-perl
 	
 #Install virtualenv to isolate each project dependencies
