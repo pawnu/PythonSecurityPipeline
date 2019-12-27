@@ -10,12 +10,12 @@ Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pi
 - [x] Select appropriate security tools and sample python project
 - [x] Set up Jenkins server using docker (Dockerfile) and pipeline as code (Jenkinsfile) to run the checks
 - [x] Use ansible to create AWS ec2 test instance, and configure the environment
-- [x] Hook up the app with ~~nginx~~+modsecurity providing WAF, ~~DDoS protection~~, reverse proxy capabilities
+- [x] Hook up the web-app with ~~nginx~~+modsecurity providing WAF, ~~DDoS protection~~, reverse proxy capabilities
 - [x] Bootstrap with Jenkins API/configfile to setup and automatically create the pipeline job
+- [ ] Carry out authenticated DAST scan on the python web app
 - [ ] Use cloudformation template to automate the whole setup or environment
 
-## Environment configuration manual steps
-Assign your ubuntu server IAM role for full ec2 access on your region of choice.
+## Installation steps
 
 1. Clone this repository to your Ubuntu Server
 ```
@@ -32,22 +32,23 @@ sudo sh setup-ubuntu.sh
 ```
 http://your-jenkins-server:8080/
 ```
-4. Input the admin password from the docker logs generated, and create Jenkins user.
-```
-docker ps
-docker logs <your-jenkins-container-name>
-```
-5. Continue with the setup to get to Jenkins main page
+4. Use the temporary credentials provided on bash logs to login. Change your password!
+5. Assign your ubuntu server IAM role for full ec2 access on eu-west-2 region to spin up test env.
+6. You need to update the following code varaibles in order for this project to work on your AWS
 
-## Setting up a Jenkins Pipeline project manually
-1. Click on New Item, input name for your project and select Pipeline as the option and click OK.
-2. Scroll down to Pipeline section - Definition, select "Pipeline script from SCM" from drop down menu.
-3. Select Git under SCM, and input Repository URL. If you forked this pipeline, you need to update
-
+```
 - AWS region
 - AWS subnet id
-- AWS security group for test server (allow inbound ssh and 10007 from your ubuntu-server's security group)
+- AWS security group id for test server (allow inbound ssh and 10007 from your ubuntu-server's security group)
+```
 
+*This is to be automated later with ansible/CloudFormation*
+
+## Setting up a Jenkins Pipeline project manually (sample pipeline already provided through automation)
+
+1. Click on New Item, input name for your project and select Pipeline as the option and click OK.
+2. Scroll down to Pipeline section - Definition, select "Pipeline script from SCM" from drop down menu.
+3. Select Git under SCM, and input Repository URL.
 4. (Optional) Create and Add your credentials for the Git repo if your repo is private, and click Save.
 5. You will be brought to the Dashboard of your Pipeline project, click on "Build Now" button to start off the pipeline.
 
