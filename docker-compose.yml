@@ -13,7 +13,8 @@ services:
     environment:
       - "Jenkins_PW=${Jenkins_PW}"
       - "JAVA_OPTS=${JAVA_OPTS}"
-      - "JenkinsPublicIp=${JenkinsPublicIp}"
+      - "JenkinsPublicHostname=${JenkinsPublicHostname}"
+      - "SeleniumPrivateIp=${SeleniumPrivateIp}"
   selenium-chrome:
     image: selenium/standalone-chrome
     restart: always
