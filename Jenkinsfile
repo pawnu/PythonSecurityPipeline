@@ -11,8 +11,6 @@ This pipeline will carry out the following on the project:
 
 */
 
-/* Which python project is it in git */
-def pythonproject = "https://github.com/globocom/secDevLabs.git"
 testenv = "null"
 
 pipeline {
@@ -23,14 +21,14 @@ pipeline {
       stage('Checkout project'){
         steps {
           echo 'downloading git directory..'
-	  git 'https://github.com/globocom/secDevLabs.git'
+	  git 'https://github.com/pawnu/secDevLabs.git'
         }
       }      
       stage('git secret check'){
         steps{
 	  script{
 		echo 'running trufflehog to check project history for secrets'
-		sh 'trufflehog --regex --entropy=False --max_depth=3 https://github.com/globocom/secDevLabs'
+		sh 'trufflehog --regex --entropy=False --max_depth=3 https://github.com/pawnu/secDevLabs'
 	  }
         }
       }
