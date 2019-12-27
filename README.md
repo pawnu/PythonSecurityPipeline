@@ -43,7 +43,9 @@ http://your-jenkins-server:8080/
 
 *This is to be automated later with ansible/CloudFormation*
 
-## Setting up a Jenkins Pipeline project manually (sample pipeline already provided through automation)
+## Setting up a Jenkins Pipeline project manually
+ 
+**A sample pipeline is already provided through automation**
 
 1. Click on New Item, input name for your project and select Pipeline as the option and click OK.
 2. Scroll down to Pipeline section - Definition, select "Pipeline script from SCM" from drop down menu.
