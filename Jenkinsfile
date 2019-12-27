@@ -37,14 +37,13 @@ pipeline {
           echo 'running python safety check on requirements.txt file'
           sh 'safety check -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt'
           echo 'running liccheck on dependencies'
-	  sh '''
-	      #!/bin/bash
+	  sh """
               virtualenv --no-site-packages .
               source bin/activate
 	      pip install -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt
               liccheck -s ~/my_strategy.ini -r $WORKSPACE/owasp-top10-2017-apps/a7/gossip-world/app/requirements.txt
               deactivate
-            '''
+            """
         }
       }  
       stage('SAST') {
