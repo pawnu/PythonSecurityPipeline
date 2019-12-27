@@ -38,8 +38,7 @@ http://your-jenkins-server:8080/
 
 - Assign your ubuntu server IAM role for full ec2 access on eu-west-2 region
 - Change AWS subnet [vpc_subnet_id](jenkins_home/createAwsEc2.yml#L30) 
-- Change AWS [security_group](jenkins_home/createAwsEc2.yml#L10) in code (allow inbound ssh and 10007 from your ubuntu-server's security group)
-
+- Change AWS [security_group](jenkins_home/createAwsEc2.yml#L10) in code (allow inbound ssh(22), WAF(80), *Optional* web-app(10007) from your IP ONLY)
 
 *This is to be automated later with ansible/CloudFormation*
 
