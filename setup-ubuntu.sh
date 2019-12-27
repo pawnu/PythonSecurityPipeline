@@ -25,7 +25,7 @@ export JenkinsPublicIp=$(curl -s http://169.254.169.254/latest/meta-data/public-
 docker-compose up -d --build
 
 #let the jenkins docker complete bootstrapping with our groovy script provided
-sleep 15
+sleep 45
 
 #create new environment without inheriting anything from this shell for this wget to work..
 env -i /bin/bash -c 'wget http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar'
