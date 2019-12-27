@@ -95,7 +95,7 @@ pipeline {
           steps {
 		script{				
 			//Test the web application from its frontend
-			/*
+			
 			def exists = fileExists '/var/jenkins_home/nikto-master/program/nikto.pl'
 			if(exists){
 				echo 'nikto already exists'
@@ -106,9 +106,8 @@ pipeline {
 				rm master.zip
 			      """
 			}
-			*/
 			if("${testenv}" != "null"){
-			  	dir("/var/jenkins_home/lynis"){  
+			  	dir("/var/jenkins_home/"){  
 					sh 'python authDAST.py ${testenv} $WORKSPACE/$BUILD_TAG/DAST_results.html'
 					//sh "perl /var/jenkins_home/nikto-master/program/nikto.pl -h http://${testenv}:10007/login"
 				}
