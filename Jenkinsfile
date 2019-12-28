@@ -103,6 +103,7 @@ pipeline {
           steps {
 		script{				
 			//Test the web application from its frontend
+			/*
 			def exists = fileExists '/var/jenkins_home/nikto-master/program/nikto.pl'
 			if(exists){
 				echo 'nikto already exists'
@@ -113,6 +114,7 @@ pipeline {
 				rm master.zip
 			      """
 			}
+			*/
 			def seleniumIp = env.SeleniumPrivateIp
 			if("${testenv}" != "null"){
 				sh "python ~/authDAST.py $seleniumIp ${testenv} $WORKSPACE/$BUILD_TAG/DAST_results.html"
