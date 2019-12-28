@@ -18,7 +18,17 @@ RUN apt-get update && apt-get install -y \
 	perl \
 	wget \
 	kbtin \
-	libnet-ssleay-perl
+	libnet-ssleay-perl \
+	software-properties-common
+
+#add public key for the multiverse repo which has nikto
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
+RUN add-apt-repository 'deb http://archive.ubuntu.com/ubuntu bionic multiverse'
+RUN add-apt-repository 'deb http://archive.ubuntu.com/ubuntu bionic-security multiverse'
+RUN add-apt-repository 'deb http://archive.ubuntu.com/ubuntu bionic-updates multiverse'
+
+RUN apt-get update -y
+RUN apt-get install -y nikto	
 	
 #Install virtualenv to isolate each project dependencies
 RUN pip install virtualenv
