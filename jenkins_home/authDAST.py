@@ -59,13 +59,14 @@ password.send_keys(mypassword)
 password.send_keys(Keys.RETURN)
 header = driver.find_element_by_xpath("/html/body/div/div/div[1]/h1")
 assert "Last gossips" in header.text
-print("logged in!")
+print("logged in successfully.. getting cookie")
 
 nikto_string = "STATIC-COOKIE="
 cookies_list = driver.get_cookies()
 for cookie in cookies_list:
     nikto_string+= '\"' + cookie['name'] + '\"='
     nikto_string+= '\"'+ cookie['value'] + '\"'
-bash_command("cp ~/nikto-master/program/nikto.conf.default ~/nikto-master/program/nikto.conf")
-bash_command("echo '" + nikto_string +"' >> ~/nikto-master/program/nikto.conf")
-bash_command("/var/jenkins_home/nikto-master/program/nikto.pl -ask no -config ~/nikto-master/program/nikto.conf -Format html -h http://"+sys.argv[2]+":10007/gossip -output "+ sys.argv[3])
+bash_command("cp /etc/nikto/config.txt ~/nikto-config.txt")
+bash_command("echo '" + nikto_string +"' >> ~/nikto-config.txt")
+print("added cookie to nikto config file to carry out authenticated scan..")
+bash_command("nikto -ask no -config ~/nikto-config.txt -Format html -h http://"+sys.argv[2]+":10007/gossip -output "+ sys.argv[3])
