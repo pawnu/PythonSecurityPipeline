@@ -35,9 +35,9 @@ git clone https://github.com/pawnu/PythonSecurityPipeline.git
 2. Edit the code to make it work on your AWS
    - Change to your AWS subnet [vpc_subnet_id](jenkins_home/createAwsEc2.yml#L30) 
    - Change to your AWS [security_group](jenkins_home/createAwsEc2.yml#L10) (allow inbound ssh(22), WAF(80), *Optional* web-app(10007) from your IP ONLY)
+   - Create an IAM role which gives full-ec2-access and assign it to your ubuntu server
 
-
-3. Run the setup script to install Docker and docker-compose
+3. Run the setup script to setup jenkins and pipeline dependencies
 ```
 cd PythonSecurityPipeline
 sudo sh setup-ubuntu.sh
@@ -47,7 +47,7 @@ sudo sh setup-ubuntu.sh
 ```
 http://your-jenkins-server:8080/
 ```
-5. Use the temporary credentials provided on bash logs to login. Change your password!
+5. Use the temporary credentials provided on the logs to login. Change your password!
 
 ## Setting up a Jenkins Pipeline project manually
  
