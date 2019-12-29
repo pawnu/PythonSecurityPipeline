@@ -22,9 +22,8 @@ Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pi
 
 > **WAF** - deploy application with WAF which will filter malicious requests according to OWASP core ruleset
 
-![demopsp](https://user-images.githubusercontent.com/11514346/71560985-41600a80-2a68-11ea-8b20-6f191bcb7ea3.gif)
+![demopsp](https://user-images.githubusercontent.com/11514346/71561143-8a18c300-2a6a-11ea-879f-c552dbb7778f.gif)
 
-**Reports produced**
 
 ![workspace](https://user-images.githubusercontent.com/11514346/71560987-46bd5500-2a68-11ea-8f1f-63c7cf65f631.JPG)
 
