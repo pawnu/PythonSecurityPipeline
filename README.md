@@ -27,30 +27,28 @@ Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pi
 
 ## Installation steps
 
-1. Clone this repository to your Ubuntu Server
+1. Clone this repository to your Ubuntu Server (t2-medium recommended)
 ```
 git clone https://github.com/pawnu/PythonSecurityPipeline.git
 ```
-2. Run the setup script to install Docker and docker-compose
+
+2. Edit the code to make it work on your AWS
+
+- Change to your AWS subnet [vpc_subnet_id](jenkins_home/createAwsEc2.yml#L30) 
+- Change to your AWS [security_group](jenkins_home/createAwsEc2.yml#L10) (allow inbound ssh(22), WAF(80), *Optional* web-app(10007) from your IP ONLY)
+
+
+3. Run the setup script to install Docker and docker-compose
 ```
 cd PythonSecurityPipeline
 sudo sh setup-ubuntu.sh
 ```
-*Note: docker will be running as root and not ubuntu user*
 
-3. Make sure your firewall allows incoming traffic to port 8080. Then, go to your jenkins server URL 
+4. Make sure your firewall allows incoming traffic to port 8080. Then, go to your jenkins server URL 
 ```
 http://your-jenkins-server:8080/
 ```
-4. Use the temporary credentials provided on bash logs to login. Change your password!
-5. You need to update the following code varaibles in order for this project to work on your AWS
-
-
-- Assign your ubuntu server IAM role for full ec2 access on eu-west-2 region
-- Change AWS subnet [vpc_subnet_id](jenkins_home/createAwsEc2.yml#L30) 
-- Change AWS [security_group](jenkins_home/createAwsEc2.yml#L10) in code (allow inbound ssh(22), WAF(80), *Optional* web-app(10007) from your IP ONLY)
-
-*This is to be automated later with ansible/CloudFormation*
+5. Use the temporary credentials provided on bash logs to login. Change your password!
 
 ## Setting up a Jenkins Pipeline project manually
  
