@@ -2,6 +2,8 @@
 
 Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pipeline for Python web application
 
+![demopsp](https://user-images.githubusercontent.com/11514346/71560985-41600a80-2a68-11ea-8b20-6f191bcb7ea3.gif)
+
 ![pipeline](https://user-images.githubusercontent.com/11514346/71473164-e57a5500-27cd-11ea-97cb-3c25f0266407.JPG)
 
 *Disclaimer: This project is for demonstration purpose with surface level checks only, do not use it as-is for production*
@@ -23,7 +25,7 @@ Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pi
 > **WAF** - deploy application with WAF which will filter malicious requests according to OWASP core ruleset
 
 **Some reports produced**
-![reports](https://user-images.githubusercontent.com/11514346/71550657-c3e7bc00-29cd-11ea-8d58-3f4a70bdf7ed.JPG)
+![workspace](https://user-images.githubusercontent.com/11514346/71560987-46bd5500-2a68-11ea-8f1f-63c7cf65f631.JPG)
 
 ## Installation steps
 
