@@ -33,9 +33,8 @@ git clone https://github.com/pawnu/PythonSecurityPipeline.git
 ```
 
 2. Edit the code to make it work on your AWS
-
-- Change to your AWS subnet [vpc_subnet_id](jenkins_home/createAwsEc2.yml#L30) 
-- Change to your AWS [security_group](jenkins_home/createAwsEc2.yml#L10) (allow inbound ssh(22), WAF(80), *Optional* web-app(10007) from your IP ONLY)
+   - Change to your AWS subnet [vpc_subnet_id](jenkins_home/createAwsEc2.yml#L30) 
+   - Change to your AWS [security_group](jenkins_home/createAwsEc2.yml#L10) (allow inbound ssh(22), WAF(80), *Optional* web-app(10007) from your IP ONLY)
 
 
 3. Run the setup script to install Docker and docker-compose
