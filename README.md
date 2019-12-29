@@ -6,13 +6,26 @@ Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pi
 
 *Disclaimer: This project is for demonstration purpose with surface level checks only, do not use it as-is for production*
 
-**TO DO:**
-- [x] Select appropriate security tools and sample python project
-- [x] Set up Jenkins server using docker (Dockerfile) and pipeline as code (Jenkinsfile) to run the checks
-- [x] Use ansible to create AWS ec2 test instance, configure the environment, and interact with it
-- [x] Hook up the web-app with ~~nginx~~+modsecurity providing WAF, ~~DDoS protection~~, reverse proxy capabilities
-- [x] Bootstrap with Jenkins API/configfile to setup and automatically create the pipeline job
-- [x] Carry out authenticated DAST scan on the python web app
+> **Declarative checkout SCM** - check out this repository with jenkins pipeline and configuration code
+
+> **Checkout project** - check out python application project repository with XSS vulnerability
+
+> **git secret check** - check there is no password/token/keys/secrets accidently commited to project github
+
+> **SCA** - check external dependencies/libraries used by the project have no known vulnerabilities
+
+> **SAST** - static analysis of the application source code for exploits, bugs, vulnerabilites
+
+> **Container audit** - audit the container that is used to deploy the python application
+
+> **DAST** - deploy the application, register, login and attack it from the frontend as authenticated user
+
+> **System security audit** - analyse at the security posture of the system hosting the application
+
+> **WAF** - application deployed with WAF which filters request according to OWASP core ruleset
+
+Some reports produced
+![reports](https://user-images.githubusercontent.com/11514346/71550657-c3e7bc00-29cd-11ea-8d58-3f4a70bdf7ed.JPG)
 
 ## Installation steps
 
@@ -50,6 +63,15 @@ http://your-jenkins-server:8080/
 3. Select Git under SCM, and input Repository URL.
 4. (Optional) Create and Add your credentials for the Git repo if your repo is private, and click Save.
 5. You will be brought to the Dashboard of your Pipeline project, click on "Build Now" button to start off the pipeline.
+
+
+**Some wishlists**
+- [x] Select appropriate security tools and sample python project
+- [x] Set up Jenkins server using docker (Dockerfile) and pipeline as code (Jenkinsfile) to run the checks
+- [x] Use ansible to create AWS ec2 test instance, configure the environment, and interact with it
+- [x] Hook up the web-app with ~~nginx~~+modsecurity providing WAF, ~~DDoS protection~~, reverse proxy capabilities
+- [x] Bootstrap with Jenkins API/configfile to setup and automatically create the pipeline job
+- [x] Carry out authenticated DAST scan on the python web app
 
 ## Authors
 
