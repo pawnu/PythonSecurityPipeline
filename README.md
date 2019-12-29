@@ -6,8 +6,6 @@ Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pi
 
 *Disclaimer: This project is for demonstration purpose with surface level checks only, do not use it as-is for production*
 
-> **Declarative checkout SCM** - check out this repository with jenkins pipeline and configuration code
-
 > **Checkout project** - check out python application project repository with XSS vulnerability
 
 > **git secret check** - check there is no password/token/keys/secrets accidently commited to project github
