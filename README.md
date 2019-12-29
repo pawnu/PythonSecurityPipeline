@@ -22,10 +22,6 @@ Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pi
 
 > **WAF** - deploy application with WAF which will filter malicious requests according to OWASP core ruleset
 
-![demopsp](https://user-images.githubusercontent.com/11514346/71561143-8a18c300-2a6a-11ea-879f-c552dbb7778f.gif)
-
-
-![workspace](https://user-images.githubusercontent.com/11514346/71560987-46bd5500-2a68-11ea-8f1f-63c7cf65f631.JPG)
 
 ## Installation steps
 
@@ -69,6 +65,15 @@ http://your-jenkins-server:8080/
 - [x] Hook up the web-app with ~~nginx~~+modsecurity providing WAF, ~~DDoS protection~~, reverse proxy capabilities
 - [x] Bootstrap with Jenkins API/configfile to setup and automatically create the pipeline job
 - [x] Carry out authenticated DAST scan on the python web app
+
+## Demo
+
+![demopsp](https://user-images.githubusercontent.com/11514346/71561143-8a18c300-2a6a-11ea-879f-c552dbb7778f.gif)
+
+### Report
+
+![workspace](https://user-images.githubusercontent.com/11514346/71560987-46bd5500-2a68-11ea-8f1f-63c7cf65f631.JPG)
+
 
 ## Authors
 
