@@ -16,7 +16,7 @@ Use this project to create a Jenkins server on AWS Ubuntu 18.04 and DevSecOps pi
 
 > **Container audit** - audit the container that is used to deploy the python application
 
-> **DAST** - deploy the application, register, login and attack & analyse it from the frontend as authenticated user
+> **DAST** - deploy the application, register, login, attack & analyse it from the frontend as authenticated user
 
 > **System security audit** - analyse at the security posture of the system hosting the application
 
