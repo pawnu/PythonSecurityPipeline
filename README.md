@@ -71,7 +71,7 @@ http://your-jenkins-server:8080/
 
 ## Demo
 
-![demopspapp3](https://user-images.githubusercontent.com/11514346/71664462-f4728180-2d50-11ea-96c3-d71533e6a4ac.gif)
+![demopspapp3](https://user-images.githubusercontent.com/11514346/71664868-9ba3e880-2d52-11ea-8745-2f242363b51d.gif)
 
 ### Report
 
