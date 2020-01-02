@@ -71,7 +71,7 @@ http://your-jenkins-server:8080/
 
 ## Demo
 
-![finalgif](https://user-images.githubusercontent.com/11514346/71666307-394de680-2d58-11ea-875d-8d57fe718b73.gif)
+![finalgif1](https://user-images.githubusercontent.com/11514346/71668067-6c47a880-2d5f-11ea-96fe-55c332ff735f.gif)
 
 ### Report
 
