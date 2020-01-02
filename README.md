@@ -71,12 +71,11 @@ http://your-jenkins-server:8080/
 
 ## Demo
 
-![demopspapp3](https://user-images.githubusercontent.com/11514346/71664868-9ba3e880-2d52-11ea-8745-2f242363b51d.gif)
+![finalgif](https://user-images.githubusercontent.com/11514346/71666307-394de680-2d58-11ea-875d-8d57fe718b73.gif)
 
 ### Report
 
-![finalgif](https://user-images.githubusercontent.com/11514346/71666307-394de680-2d58-11ea-875d-8d57fe718b73.gif)
-
+![workspace](https://user-images.githubusercontent.com/11514346/71560987-46bd5500-2a68-11ea-8f1f-63c7cf65f631.JPG)
 
 ## Authors
 
