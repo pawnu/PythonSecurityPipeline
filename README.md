@@ -4,8 +4,6 @@ A Jenkins end-to-end DevSecOps pipeline for Python web application, hosted on AW
 
 ![pipeline](https://user-images.githubusercontent.com/11514346/71473164-e57a5500-27cd-11ea-97cb-3c25f0266407.JPG)
 
-The architecture/blueprint
-
 <img alt="psparchitecture" src="https://user-images.githubusercontent.com/11514346/71579758-effe5c80-2af5-11ea-97ae-dd6c91b02312.PNG">
 
 *Disclaimer: This project is for demonstration purpose with surface level checks only, do not use it as-is for production*
