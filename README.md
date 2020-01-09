@@ -70,7 +70,7 @@ http://your-jenkins-server:8080/
 
 ## Demo
 
-![finalgif3](https://user-images.githubusercontent.com/11514346/71716569-1fbaa680-2e0d-11ea-9166-066ff513fee2.gif)
+![finalgif4](https://user-images.githubusercontent.com/11514346/72058904-db298200-32c8-11ea-9a15-46c179c4a0fb.gif)
 
 ### Report
 
