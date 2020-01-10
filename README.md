@@ -37,7 +37,7 @@ git clone https://github.com/pawnu/PythonSecurityPipeline.git
    - Change to your AWS [security_group](jenkins_home/createAwsEc2.yml#L10) (allow inbound ssh(22), WAF(80), *Optional* web-app(10007) from your IP ONLY)
    - Create an IAM role which gives full-ec2-access and assign it to your ubuntu server
 
-3. Run the setup script to setup jenkins and pipeline dependencies
+3. Run the setup script to create CICD server with Jenkins+pipeline ready to go
 ```
 cd PythonSecurityPipeline
 sudo sh setup-ubuntu.sh
@@ -48,6 +48,7 @@ sudo sh setup-ubuntu.sh
 http://your-jenkins-server:8080/
 ```
 5. Use the temporary credentials provided on the logs to login. Change your password!
+6. Go to the python pipeline project dashboard, click on "Build Now" button to start it off.
 
 ## Setting up a Jenkins Pipeline project manually
  
