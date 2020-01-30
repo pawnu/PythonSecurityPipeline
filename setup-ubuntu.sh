@@ -5,7 +5,7 @@ apt install docker.io -y
 apt-get install -y docker-compose
 apt install default-jre -y
 
-#have to relogin as ubuntu user
+#have to relogin as ubuntu user  
 usermod -aG docker ubuntu
 
 # restart new session with docker group
