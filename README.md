@@ -67,7 +67,7 @@ http://your-jenkins-server:8080/
 - [x] Use ansible to create AWS ec2 test instance, configure the environment, and interact with it
 - [x] Hook up the web-app with ~~nginx~~+modsecurity providing WAF, ~~DDoS protection~~, reverse proxy capabilities
 - [x] Bootstrap with Jenkins API/configfile to setup and automatically create the pipeline job
-- [x] Carry out authenticated DAST scan on the python web app
+- [x] Carry out authenticated DAST scan on the python web app 
 
 ## Demo
 
