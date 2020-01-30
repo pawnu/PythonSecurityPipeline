@@ -48,7 +48,7 @@ sudo sh setup-ubuntu.sh
 http://your-jenkins-server:8080/
 ```
 5. Use the temporary credentials provided on the logs to login. Change your password!
-6. Go to the python pipeline project dashboard, click on "Build Now" button to start it off.
+6. Go to the python pipeline project dashboard, click on "Build Now" button to start it off. 
 
 ## Setting up a Jenkins Pipeline project manually
  
